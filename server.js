@@ -58,6 +58,6 @@ app.get('/cool', function(req, res){
 //     });
 // });
 
-var server = app.listen(80, function(){
+var server = app.listen(process.env.PORT || 3001, function(){
     console.log("cool");
 });
