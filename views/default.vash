@@ -116,13 +116,18 @@ html{
 #myMenu a
 {
     color:#254117;
-}
-    
+}  
 .navbar{
     height:4%;
     
 }
 #leftWrapper iframe{
+        //margin-left:500px;
+        width:560;
+        height:315;
+}
+
+#leftWrapper svg{
  
         //margin-left:500px;
         width:560;
@@ -136,6 +141,7 @@ a.internal
     
     </style>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
 <!--    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>-->
 
 
@@ -178,8 +184,8 @@ a.internal
 <!--      <li><a href="#/feed">Feed</a></li>-->
       <li class="active"><a href="#/news">News</a></li>
       <li><a href="#events">Events</a></li>
-      <li><a href="#locations">Locations</a></li>
-      <li><a href="#weather">Guides</a></li>
+      <li><a href="#locations">Places</a></li>
+      <li><a href="#guides">Guides</a></li>
       <li><a href="#weather">Tours</a></li>
       <li><a href="#traffic">Traffic</a></li>
       <li><a href="#weather">Weather</a></li>

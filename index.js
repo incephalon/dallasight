@@ -58,6 +58,6 @@ app.get('/cool', function(req, res){
 //     });
 // });
 
-var server = app.listen(3001, function(){
+var server = app.listen(80, function(){
     console.log("cool");
 });
