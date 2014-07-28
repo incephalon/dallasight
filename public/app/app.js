@@ -69,11 +69,23 @@ $stateProvider
         url: "/traffic",
         views: {
             "viewA": {
-                templateUrl: "poster.html"
+                templateUrl: "templates/poster.html"
             },
             "viewB": {
                 controller:'trafficController',
                 templateUrl: "templates/traffic.html"
+            }
+        }
+    })
+    .state('guides', {
+        url: "/guides",
+        views: {
+            "viewA": {
+                templateUrl: "templates/poster.html"
+            },
+            "viewB": {
+                controller:'guidesController',
+                templateUrl: "templates/guides.html"
             }
         }
     })
@@ -88,140 +100,18 @@ $stateProvider
        },
          'viewB': {
            //template:""
-             templateUrl:"templates/news.html"
-       }       
-         
-         
-         
+             templateUrl:"templates/news.html",
+             controller:"newsController"
+       }   
      }
     })                                
                                   
 });
 
-
-    var map;
-    var weatherLayer; 
-    var cloudLayer;
-    var trafficLayer;
-    var ctaLayer;
-    var bounds;
-    var projection;
-    //var markers = new OpenLayers.Layer.Markers("Markers");
-
-
-    function initialize() {
-      var mapOptions = {
-        center: new google.maps.LatLng(32.795903, -96.805301),
-        zoom: 14,
-        //mapTypeId: google.maps.MapTypeId.SATELLITE,
-          mapTypeId: google.maps.MapTypeId.HYBRID,
-        disableDefaultUI: true
-        //heading: 90,
-        //tilt: 45
-      };
-      map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-      map.setTilt(0);
-        bounds=new google.maps.LatLngBounds();
-         projection = map.getProjection();
-    offsetCenter(map.getCenter(), 100, 200);
-        
-        
-        
-        
-    google.maps.event.addListener(map, 'click', function(event) {
-
-        marker = new google.maps.Marker({position: event.latLng, map: map});
-        console.log(event.latLng);
-
-    });
-        
-    }
-
-    google.maps.event.addDomListener(window, 'load', initialize);
-
-
 app.controller('myC', function($scope){
-   $scope.hello="world"; 
-    
-    
-//    var map;
-//    function initialize() {
-//      var mapOptions = {
-//        center: new google.maps.LatLng(32.795903, -96.805301),
-//        zoom: 14,
-//        //mapTypeId: google.maps.MapTypeId.SATELLITE,
-//          mapTypeId: google.maps.MapTypeId.HYBRID,
-//        disableDefaultUI: true
-//        //heading: 90,
-//        //tilt: 45
-//      };
-//      map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-//      map.setTilt(0);
-//        
-//        
-//    google.maps.event.addListener(map, 'click', function(event) {
-//
-//        marker = new google.maps.Marker({position: event.latLng, map: map});
-//        console.log(event.latLng);
-//
-//    });
-//        
-//    }
-//
-//    google.maps.event.addDomListener(window, 'load', initialize);
-    
-    
-//smoothZoom(map, 17, map.getZoom());
-    
-function smoothZoom (map, max, cnt) {
-    if (cnt >= max) {
-            return;
-        }
-    else {
-        z = google.maps.event.addListener(map, 'zoom_changed', function(event){
-            google.maps.event.removeListener(z);
-            smoothZoom(map, max, cnt + 1);
-        });
-        setTimeout(function(){map.setZoom(cnt)}, 80); // 80ms is what I found to work well on my system -- it might not work well on all systems
-    }
-}  
-    
-    
- 
+   $scope.hello="world";  
     
 });
-
-
-function offsetCenter(latlng,offsetx,offsety) {
-
-// latlng is the apparent centre-point
-// offsetx is the distance you want that point to move to the right, in pixels
-// offsety is the distance you want that point to move upwards, in pixels
-// offset can be negative
-// offsetx and offsety are both optional
-
-var scale = Math.pow(2, map.getZoom());
-var nw = new google.maps.LatLng(
-//    map.getBounds().getNorthEast().lat(),
-//    map.getBounds().getSouthWest().lng()
-    
-       bounds.getNorthEast().lat(),
-    bounds.getSouthWest().lng()
-);
-
-var worldCoordinateCenter = projection.fromLatLngToPoint(latlng);
-var pixelOffset = new google.maps.Point((offsetx/scale) || 0,(offsety/scale) ||0)
-
-var worldCoordinateNewCenter = new google.maps.Point(
-    worldCoordinateCenter.x - pixelOffset.x,
-    worldCoordinateCenter.y + pixelOffset.y
-);
-
-var newCenter = map.getProjection().fromPointToLatLng(worldCoordinateNewCenter);
-
-map.setCenter(newCenter);
-return null;
-}
 
 app.controller('newsController', function($scope){
     //$("#leftWrapper").html("");
@@ -261,9 +151,7 @@ app.controller('newsController', function($scope){
       // var ctaLayer = new google.maps.KmlLayer({
       //     url: 'http://dallasight.azurewebsites.net/Content/DallasCounty2011CommissionerPrecincts.kml'
       //   });
-      //   ctaLayer.setMap(map);
-    
-    
+      //   ctaLayer.setMap(map);   
     
 });
 
@@ -291,26 +179,27 @@ app.controller('eventsController', function($scope){
         
         
         for(var i=0; i<4; i++){
-            $("#leftWrapper").append($("<img src=" + dir + myImages[i] + "></img>"));
-            
-        }
-        
-//        var dir = "pictures/one";
-//        var fileextension = ".jpg";
-//        $.ajax({
-//            //This will retrieve the contents of the folder if the folder is configured as 'browsable'
-//            url: dir,
-//            success: function (data) {
-//                //Lsit all png file names in the page
-//                $(data).find("a:contains(" + fileextension + ")").each(function () {
-//                    var filename = this.href.replace(window.location.host, "").replace("http:///", "");
-//                    $("#leftWrapper").append($("<img src=" + dir + filename + "></img>"));
-//                });
-//            }
-//        });
-        
-        
+            $("#leftWrapper").append($("<img src=" + dir + myImages[i] + "></img>")); 
+        }   
     }
+});
+
+app.controller('guidesController', function($scope){  
+
+        $("#leftWrapper").css("visibility", "visible");
+    
+        if(cloudLayer!=null)
+        {
+            weatherLayer.setMap(null);
+            cloudLayer.setMap(null);     
+        }
+        if(trafficLayer!=null)
+        {
+            trafficLayer.setMap(null);
+        }
+    
+        $scope.guides=[{name:"Guide To Riding DART"}, {name:"What is Home Rule?"},  {name:"How to Become a Teacher in Texas"}];
+    
 });
 
 app.controller('locationsController', function($scope){
@@ -355,7 +244,7 @@ app.controller('locationsController', function($scope){
                 //add them to the map
        
        var offset = Math.floor(Math.random() * 3) * 16; // pick one of the three icons in the sprite
-var count=468;
+    var count=468;
     // Calculate desired pixel-size of the marker
     var size = Math.floor(4*(count-1) + 8);
     var scaleFactor = size/16;
@@ -377,9 +266,6 @@ var count=468;
             }
        }
     }
-    
-//    $("#leftWrapper").html("");
-//    $("#leftWrapper").css("visibility", "hidden");
     
 });
 
@@ -418,18 +304,14 @@ app.controller('trafficController', function($scope, trafficData){
     
     //get weather stuff (from service?)
     
-    
-    
-    
 });
 
 app.controller('weatherController', function($scope){
     $scope.hello="from weather controller";
     
-//    $("#leftWrapper").html("");
     $("#leftWrapper").css("visibility", "hidden");
     
-    //this where I could initialize stuff?
+ 
     
     if(trafficLayer!=null)
     {
@@ -444,19 +326,7 @@ app.controller('weatherController', function($scope){
         $( "#left" ).fadeOut( "slow", function() {
             // Animation complete.
           });      
-
-        
-//      var mapOptions = {
-//        center: new google.maps.LatLng(32.795903, -96.805301),
-//        zoom: 12,
-//        //mapTypeId: google.maps.MapTypeId.SATELLITE,
-//        mapTypeId: google.maps.MapTypeId.HYBRID,
-//        disableDefaultUI: true
-//
-//      };
-//
-//        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-        
+   
         
       weatherLayer = new google.maps.weather.WeatherLayer({
         temperatureUnits: google.maps.weather.TemperatureUnit.FAHRENHEIT
@@ -470,6 +340,93 @@ app.controller('weatherController', function($scope){
     
     $scope.init();
     
-
-    
 });
+
+
+
+
+
+
+    var map;
+    var weatherLayer; 
+    var cloudLayer;
+    var trafficLayer;
+    var ctaLayer;
+    var bounds;
+    var projection;
+    //var markers = new OpenLayers.Layer.Markers("Markers");
+
+
+    function initialize() {
+      var mapOptions = {
+        center: new google.maps.LatLng(32.795903, -96.805301),
+        zoom: 14,
+        //mapTypeId: google.maps.MapTypeId.SATELLITE,
+          mapTypeId: google.maps.MapTypeId.HYBRID,
+        disableDefaultUI: true
+        //heading: 90,
+        //tilt: 45
+      };
+      map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+      map.setTilt(0);
+        bounds=new google.maps.LatLngBounds();
+         projection = map.getProjection();
+    offsetCenter(map.getCenter(), 100, 200);
+        
+        
+        
+        
+    google.maps.event.addListener(map, 'click', function(event) {
+
+        marker = new google.maps.Marker({position: event.latLng, map: map});
+        console.log(event.latLng);
+
+    });
+        
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+function smoothZoom (map, max, cnt) {
+    if (cnt >= max) {
+            return;
+        }
+    else {
+        z = google.maps.event.addListener(map, 'zoom_changed', function(event){
+            google.maps.event.removeListener(z);
+            smoothZoom(map, max, cnt + 1);
+        });
+        setTimeout(function(){map.setZoom(cnt)}, 80); // 80ms is what I found to work well on my system -- it might not work well on all systems
+    }
+} 
+
+function offsetCenter(latlng,offsetx,offsety) {
+
+// latlng is the apparent centre-point
+// offsetx is the distance you want that point to move to the right, in pixels
+// offsety is the distance you want that point to move upwards, in pixels
+// offset can be negative
+// offsetx and offsety are both optional
+
+var scale = Math.pow(2, map.getZoom());
+var nw = new google.maps.LatLng(
+//    map.getBounds().getNorthEast().lat(),
+//    map.getBounds().getSouthWest().lng()
+    
+       bounds.getNorthEast().lat(),
+    bounds.getSouthWest().lng()
+);
+
+var worldCoordinateCenter = projection.fromLatLngToPoint(latlng);
+var pixelOffset = new google.maps.Point((offsetx/scale) || 0,(offsety/scale) ||0)
+
+var worldCoordinateNewCenter = new google.maps.Point(
+    worldCoordinateCenter.x - pixelOffset.x,
+    worldCoordinateCenter.y + pixelOffset.y
+);
+
+var newCenter = map.getProjection().fromPointToLatLng(worldCoordinateNewCenter);
+
+map.setCenter(newCenter);
+return null;
+}
