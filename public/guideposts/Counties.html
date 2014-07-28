@@ -1,0 +1,36 @@
+<style>
+    #insider{
+      width:500px;
+      height:500px;
+      margin:0 auto;  
+    }
+</style>
+
+
+<div id="insider"></div>
+
+<script type="text/javascript">
+    var svgPath = "images/CountyMap.svg";
+
+    d3.xml(svgPath, "image/svg+xml", function(xml) {
+        var lefty=document.getElementById('insider');
+        lefty.appendChild(xml.documentElement);
+        visualize();        
+
+    });
+
+    function visualize() {
+
+        var svg = d3.select("svg");
+
+            svg.selectAll("path")
+               .each(function(d, i) { 
+                   d3.select(this)
+                       .transition()
+                       .duration(i*17)
+                       .style("fill","red")       
+                }); 
+  
+    }
+
+</script>
