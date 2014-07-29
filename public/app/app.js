@@ -89,13 +89,25 @@ $stateProvider
             }
         }
     })
+    .state('tours', {
+        url: "/tours",
+        views: {
+            "viewA": {
+                templateUrl: "templates/poster.html"
+            },
+            "viewB": {
+                controller:'toursController',
+                templateUrl: "templates/tours.html"
+            }
+        }
+    })
     .state('guideposts', {
-     url: '/guideposts/{cardname}',
+     url: '/guideposts/{cardname}{number:(?:/[^/]+)?}',
      views: {
        'viewA': {
            templateUrl:
                     function (stateParams){
-                       return 'guideposts/' + stateParams.cardname + '.html';
+                       return 'guideposts/' + stateParams.cardname + '/' + stateParams.number + '.html';
                }
        },
          'viewB': {
@@ -202,6 +214,36 @@ app.controller('guidesController', function($scope){
     
 });
 
+app.controller('toursController', function($scope){  
+
+        $("#leftWrapper").css("visibility", "visible");
+    
+        if(cloudLayer!=null)
+        {
+            weatherLayer.setMap(null);
+            cloudLayer.setMap(null);     
+        }
+        if(trafficLayer!=null)
+        {
+            trafficLayer.setMap(null);
+        }
+    
+        $scope.tours=[
+            {name:"DART Orange Line to DFW"},
+            {name:"Meadows Museum"},  
+            {name:"Downtown Tunnels"}, 
+            {name:"Arboretum"}, 
+            {name:"Vogel Alcove"}, 
+            {name:"The Bridge"}, 
+            {name:"Trinity Audubon Center"}, 
+            {name:"Katy Trail"}, 
+            {name:"White Rock Trails"}, 
+            {name:"Dallas Public Library"}
+        ];
+    
+});
+
+
 app.controller('locationsController', function($scope){
     
     if(cloudLayer!=null)
@@ -285,8 +327,14 @@ app.controller('trafficController', function($scope, trafficData){
     
     trafficData.getTraffic()
             .success(function (data) {
-                $scope.traffic = data;
-                console.log("succcess from traffic");
+                //$scope.traffic = data;
+                //console.log("succcess from trafficdata["incidents"]");
+                console.log(data);
+                $scope.traffic=[];
+                for (var i=0; i<data["incidents"].length; i++){
+                        $scope.traffic.push(data["incidents"][i]);
+                }
+
             })
             .error(function (error) {
                 $scope.status = 'Unable to load customer data: ' + error.message;
@@ -306,7 +354,7 @@ app.controller('trafficController', function($scope, trafficData){
     
 });
 
-app.controller('weatherController', function($scope){
+app.controller('weatherController', function($scope, weatherData){
     $scope.hello="from weather controller";
     
     $("#leftWrapper").css("visibility", "hidden");
@@ -325,7 +373,25 @@ app.controller('weatherController', function($scope){
         
         $( "#left" ).fadeOut( "slow", function() {
             // Animation complete.
-          });      
+          }); 
+
+    weatherData.getTraffic()
+            .success(function (data) {
+                //$scope.weather = data;
+                console.log("succcess from weather");
+                console.log(data);
+                $scope.weather=[];
+                for (var i=0; i<data["incidents"].length; i++){
+                        $scope.weather.push(data["incidents"][i]);
+                }
+
+            })
+            .error(function (error) {
+                $scope.status = 'Unable to load customer data: ' + error.message;
+            });
+
+
+
    
         
       weatherLayer = new google.maps.weather.WeatherLayer({
