@@ -375,15 +375,15 @@ app.controller('weatherController', function($scope, weatherData){
             // Animation complete.
           }); 
 
-    weatherData.getTraffic()
+    weatherData.getWeather()
             .success(function (data) {
                 //$scope.weather = data;
                 console.log("succcess from weather");
                 console.log(data);
-                $scope.weather=[];
-                for (var i=0; i<data["incidents"].length; i++){
-                        $scope.weather.push(data["incidents"][i]);
-                }
+                // $scope.weather=[];
+                // for (var i=0; i<data["incidents"].length; i++){
+                //         $scope.weather.push(data["incidents"][i]);
+                // }
 
             })
             .error(function (error) {
