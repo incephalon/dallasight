@@ -104,6 +104,9 @@ $stateProvider
     .state('maps', {
         url: "/maps",
         views: {
+             "viewA": {
+                templateUrl: "templates/poster.html"
+            },
             "viewB": {
                 controller:'mapsController',
                 templateUrl: "templates/maps.html"
@@ -420,6 +423,18 @@ app.controller('weatherController', function($scope, weatherData){
 });
 
 app.controller('mapsController', function($scope){  
+
+
+    if(cloudLayer!=null)
+    {
+        weatherLayer.setMap(null);
+        cloudLayer.setMap(null);     
+    }
+    if(trafficLayer!=null)
+    {
+        trafficLayer.setMap(null);
+    }
+
         //$("#leftWrapper").html("");
         //$("#leftWrapper").css("visibility", "hidden");
         //$("#leftWrapper").css("visibility", "visible");
@@ -433,8 +448,9 @@ app.controller('mapsController', function($scope){
         // {
         //     trafficLayer.setMap(null);
         // }
-
-        map.setZoom(12);
+        map.setZoom(10);
+        map.panTo(new google.maps.LatLng(32.756302, -96.147348));
+        
     
         $scope.maps=[
         {name:"DISD Trustees", file:''}, 
@@ -452,13 +468,15 @@ app.controller('mapsController', function($scope){
     $scope.loadMap=function(){
         //get all the images from a folder
 
+//32.756302, -96.147348
+
         console.log("map load");
         //remove the other one
         ctaLayer = new google.maps.KmlLayer({
-          url: 'http://dallasightTwo.azurewebsites.net/Content/DallasCounty2011CommissionerPrecincts.kml'
+          url: 'http://dallasightTwo.azurewebsites.net/Content/DallasCounty2011CommissionerPrecincts.kml',
+          preserveViewport: true
         });
         ctaLayer.setMap(map);   
- 
     }
 });
 
