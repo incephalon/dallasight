@@ -8,7 +8,7 @@ app.set('view engine','vash');
 app.set('views', __dirname + '/views');
 app.use(express.static(__dirname +"/public"));
 
-mongoose.connect('mongodb://localhost/dallasight');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/dallasight');
 
 //var controllers = require("./controllers");
 
