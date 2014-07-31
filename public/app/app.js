@@ -101,6 +101,15 @@ $stateProvider
             }
         }
     })
+    .state('maps', {
+        url: "/maps",
+        views: {
+            "viewB": {
+                controller:'mapsController',
+                templateUrl: "templates/maps.html"
+            }
+        }
+    })
     .state('guideposts', {
      //url: '/guideposts/{cardname}{number:(?:/[^/]+)?}',
      url: '/guideposts/{cardname}',
@@ -212,7 +221,7 @@ app.controller('guidesController', function($scope){
             trafficLayer.setMap(null);
         }
     
-        $scope.guides=[{name:"Guide To Riding DART"}, {name:"What is Home Rule?"},  {name:"How to Become a Teacher in Texas"}];
+        $scope.guides=[{name:"STAAR Testing"}, {name:"What is Home Rule?"},  {name:"How to Become a Teacher in Texas"}];
     
 });
 
@@ -408,6 +417,49 @@ app.controller('weatherController', function($scope, weatherData){
     
     $scope.init();
     
+});
+
+app.controller('mapsController', function($scope){  
+        //$("#leftWrapper").html("");
+        //$("#leftWrapper").css("visibility", "hidden");
+        //$("#leftWrapper").css("visibility", "visible");
+    
+        // if(cloudLayer!=null)
+        // {
+        //     weatherLayer.setMap(null);
+        //     cloudLayer.setMap(null);     
+        // }
+        // if(trafficLayer!=null)
+        // {
+        //     trafficLayer.setMap(null);
+        // }
+
+        map.setZoom(12);
+    
+        $scope.maps=[
+        {name:"DISD Trustees", file:''}, 
+        {name:"TX Board of Education", file:''}, 
+        {name:"Dallas County Commissioners", file:''}, 
+        {name:"Cities", file:''}, 
+        {name:"Counties", file:''}, 
+        {name:"Dallas County Constables", file:''}, 
+        {name:"Dallas City Council", file:''}, 
+        {name:"TX House", file:''}, 
+        {name:"TX Senate", file:''},
+        {name:"US House", file:''}
+        ];
+    
+    $scope.loadMap=function(){
+        //get all the images from a folder
+
+        console.log("map load");
+        //remove the other one
+        ctaLayer = new google.maps.KmlLayer({
+          url: 'http://dallasightTwo.azurewebsites.net/Content/DallasCounty2011CommissionerPrecincts.kml'
+        });
+        ctaLayer.setMap(map);   
+ 
+    }
 });
 
 
