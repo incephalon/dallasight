@@ -11,19 +11,19 @@ exports.all = function(req, res) {
             });
         }
 
-//        var newsItem = new NewsItem({ title: 'Mike Miles got a contract extension yesterday.' });
+        var newsItem = new NewsItem({ title: 'Mike Miles got a contract extension yesterday.' });
 
-//        newsItem.save(function(err) {
-//            if (err) {
-//                return res.json(500, {
-//                    error: 'Cannot save the news item'
-//                });
-//            }
-//            res.json(newsItem);
-//        });
+        newsItem.save(function(err) {
+            if (err) {
+                return res.json(500, {
+                    error: 'Cannot save the news item'
+                });
+            }
+            res.json(newsItem);
+        });
 
 
-        res.json(newsItems);
+        //res.json(newsItems);
 
     });
 };
