@@ -5,12 +5,53 @@
         color:#254117;
         font-family: Gotham Narrow;             
     }
+
+	.table {
+	    text-align: center;
+	}
+	#horizontal-list {
+		 text-align: center;
+	    display: inline;
+	    list-style: none;
+	}
+	#horizontal-list li{
+		float:left;
+		text-decoration: underline;
+		font-style: italic;;
+	}
+	#horizontal-list a{
+		color:green;
+	}
+	.headline{
+		padding-left:5px;
+	}
 </style>
 
 
+
+
+<div id="menu-outer">
+  <div class="table">
+    <ul id="horizontal-list">
+      <li><a href="#">Headlines</a></li>
+      <li><a href="#">Guides</a></li>
+      <li><a href="#">Passages</a></li>
+      <li><a href="#">Views</a></li>
+    </ul>
+  </div>
+</div>
+
+
 <h2 id="title">News</h2>
+
 <p data-ng-repeat="newsItem in newsItems" data-ng-bind-html="renderHtml(newsItem.title)"></p>
-<p>Mike Miles got a contract <a class="internal" href="#guideposts/one">extension</a> yesterday.</p>
-<p>Deion Sanders' <a class="internal" href="" ng-click="panHere(32.708034, -96.812912)">Prime Prep</a> is set to close after ...</p>
-<p>Mayor Mike Rawlings was on Channel 4 <a class="internal"  href="#guideposts/home_rule_youtube">last night</a> to talk about Home Rule</p>
+<p class="headline">Mike Miles got a contract <a class="internal" href="#guideposts/one">extension</a> yesterday.</p>
+<p class="headline">Deion Sanders' <a class="internal" href="" ng-click="panHere(32.708034, -96.812912)">Prime Prep</a> is set to close after ...</p>
+<p class="headline">Mayor Mike Rawlings was on Channel 4 <a class="internal"  href="#guideposts/home_rule_youtube">last night</a> to talk about Home Rule</p>
+
+<script>
+	var wHere= $("#thing").width();
+	$("#horizontal-list>li").width((wHere/4)-15);
+
+</script>
 

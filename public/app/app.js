@@ -462,17 +462,18 @@ app.controller('mapsController', function($scope){
         $scope.maps=[
         {name:"DISD Trustees", file:''}, 
         {name:"TX Board of Education", file:''}, 
-        {name:"Dallas County Commissioners", file:''}, 
+        {name:"Dallas County Commissioners", file:'http://dallasightTwo.azurewebsites.net/Content/DallasCounty2011CommissionerPrecincts.kml'}, 
         {name:"Cities", file:''}, 
-        {name:"Counties", file:''}, 
+        {name:"Counties", file:'http://dallasightTwo.azurewebsites.net/Content/DallasCounty2011CommissionerPrecincts.kml'}, 
         {name:"Dallas County Constables", file:''}, 
-        {name:"Dallas City Council", file:''}, 
+        {name:"Dallas City Council", file:'http://dallasightTwo.azurewebsites.net/Content/DallasCityCouncil.kml'}, 
         {name:"TX House", file:''}, 
         {name:"TX Senate", file:''},
-        {name:"US House", file:''}
+        {name:"US House", file:''},
+        {name:"Dallas Parks", file:'http://dallasightTwo.azurewebsites.net/Content/DallasParks.kml'}
         ];
     
-    $scope.loadMap=function(){
+    $scope.loadMap=function(theFile){
         //get all the images from a folder
 
 //32.756302, -96.147348
@@ -480,7 +481,7 @@ app.controller('mapsController', function($scope){
         console.log("map load");
         //remove the other one
         ctaLayer = new google.maps.KmlLayer({
-          url: 'http://dallasightTwo.azurewebsites.net/Content/DallasCounty2011CommissionerPrecincts.kml',
+          url: theFile,
           preserveViewport: true
         });
         ctaLayer.setMap(map);   

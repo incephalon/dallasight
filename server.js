@@ -8,7 +8,8 @@ app.set('view engine','vash');
 app.set('views', __dirname + '/views');
 app.use(express.static(__dirname +"/public"));
 
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/dallasight');
+//mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/dallasight');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://incephalon:lthnia90_@ds050087.mongolab.com:50087/themap');
 
 //var controllers = require("./controllers");
 
