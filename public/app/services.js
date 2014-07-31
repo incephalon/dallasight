@@ -12,3 +12,9 @@ app.factory('trafficData', function($http, $q){
     
     };
 });
+
+app.factory('NewsItems', ['$resource',
+    function($resource) {
+        return $resource('news');
+    }
+]);

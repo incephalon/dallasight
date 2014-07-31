@@ -1,4 +1,4 @@
-var app = angular.module('myApp',["ui.router", "ngRoute"]);
+var app = angular.module('myApp',["ui.router", "ngRoute", "ngResource"]);
                                   
 app.config(function($stateProvider){
 $stateProvider
@@ -113,47 +113,49 @@ app.controller('myC', function($scope){
     
 });
 
-app.controller('newsController', function($scope){
-    //$("#leftWrapper").html("");
-    //$("#leftWrapper").css("visibility", "hidden");
-    $("#leftWrapper").css("visibility", "visible");
+app.controller('newsController', ['$scope', 'NewsItems',
+  function($scope, NewsItems) {
 
-    if(cloudLayer!=null)
-    {
-        weatherLayer.setMap(null);
-        cloudLayer.setMap(null);     
-    }
-    if(trafficLayer!=null)
-    {
-        trafficLayer.setMap(null);
-    }
-    
-    $scope.panHere=function(lat, long){
-        //e.preventDefault();
-        var n = new google.maps.LatLng(lat, long);
-        console.log("working");
-        map.panTo(n);
-    }
-    
-    
-    $scope.$on('$viewContentLoaded', function(){
-            var w = $("#leftWrapper").width();
-            var h = $("#leftWrapper").height();
-            console.log(w);
-            console.log(h);
+      NewsItems.query(function(newsItems) {
+          $scope.newsItems = newsItems;
+      });
 
-            $('iframe').css('margin-left', (w/2)-280);
-            $('iframe').css('margin-top', (h/2)-157);
-  });
-    
-    
-    
+      //$("#leftWrapper").html("");
+      //$("#leftWrapper").css("visibility", "hidden");
+      $("#leftWrapper").css("visibility", "visible");
+
+      if (cloudLayer != null) {
+          weatherLayer.setMap(null);
+          cloudLayer.setMap(null);
+      }
+      if (trafficLayer != null) {
+          trafficLayer.setMap(null);
+      }
+
+      $scope.panHere = function (lat, long) {
+          //e.preventDefault();
+          var n = new google.maps.LatLng(lat, long);
+          console.log("working");
+          map.panTo(n);
+      };
+
+
+      $scope.$on('$viewContentLoaded', function () {
+          var w = $("#leftWrapper").width();
+          var h = $("#leftWrapper").height();
+          console.log(w);
+          console.log(h);
+
+          $('iframe').css('margin-left', (w / 2) - 280);
+          $('iframe').css('margin-top', (h / 2) - 157);
+      });
+
       // var ctaLayer = new google.maps.KmlLayer({
       //     url: 'http://dallasight.azurewebsites.net/Content/DallasCounty2011CommissionerPrecincts.kml'
       //   });
-      //   ctaLayer.setMap(map);   
-    
-});
+      //   ctaLayer.setMap(map);
+  }
+]);
 
 app.controller('eventsController', function($scope){  
         //$("#leftWrapper").html("");

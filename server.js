@@ -25,7 +25,7 @@ app.get('/cool', function(req, res){
     res.send('cool');
 });
 
-app.route('/articles')
+app.route('/news')
     .get(news.all);
 
 process.on('uncaughtException', function (error) {
