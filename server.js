@@ -1,9 +1,14 @@
 var express = require('express');
+var mongoose = require('mongoose');
+var news = require('./server/controllers/news.server.controller');
+
 var app = express();
 
 app.set('view engine','vash');
 app.set('views', __dirname + '/views');
 app.use(express.static(__dirname +"/public"));
+
+mongoose.connect('mongodb://localhost/dallasight');
 
 //var controllers = require("./controllers");
 
@@ -18,6 +23,13 @@ app.get('/', function(req, res){
 
 app.get('/cool', function(req, res){
     res.send('cool');
+});
+
+app.route('/articles')
+    .get(news.all);
+
+process.on('uncaughtException', function (error) {
+    console.log(error.stack);
 });
 
 
