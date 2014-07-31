@@ -1,4 +1,4 @@
-var app = angular.module('myApp',["ui.router", "ngRoute", "ngResource"]);
+var app = angular.module('myApp',["ui.router", "ngRoute", "ngResource", "ngSanitize"]);
                                   
 app.config(function($stateProvider){
 $stateProvider
@@ -139,12 +139,17 @@ app.controller('myC', function($scope){
     
 });
 
-app.controller('newsController', ['$scope', 'NewsItems',
-  function($scope, NewsItems) {
+app.controller('newsController', ['$scope', '$sce', 'NewsItems',
+  function($scope, $sce, NewsItems) {
 
       NewsItems.query(function(newsItems) {
           $scope.newsItems = newsItems;
       });
+	  
+	  $scope.renderHtml = function(html_code)
+      {
+	    return $sce.trustAsHtml(html_code);
+      };
 
       //$("#leftWrapper").html("");
       //$("#leftWrapper").css("visibility", "hidden");

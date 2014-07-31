@@ -166,6 +166,7 @@ a.internal
 <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxmW36spMxoabEUbquyqD_85ryN-F9L_4&sensor=false"></script>-->
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=weather"></script>
 <script src=http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.18/angular.min.js></script>
+<script src=http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.18/angular-sanitize.min.js></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-route.min.js"></script>
 <!--    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.min.js"></script>-->
 <script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
