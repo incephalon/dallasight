@@ -89,12 +89,38 @@ $stateProvider
             }
         }
     })
+    .state('tours', {
+        url: "/tours",
+        views: {
+            "viewA": {
+                templateUrl: "templates/poster.html"
+            },
+            "viewB": {
+                controller:'toursController',
+                templateUrl: "templates/tours.html"
+            }
+        }
+    })
+    .state('maps', {
+        url: "/maps",
+        views: {
+             "viewA": {
+                templateUrl: "templates/poster.html"
+            },
+            "viewB": {
+                controller:'mapsController',
+                templateUrl: "templates/maps.html"
+            }
+        }
+    })
     .state('guideposts', {
+     //url: '/guideposts/{cardname}{number:(?:/[^/]+)?}',
      url: '/guideposts/{cardname}',
      views: {
        'viewA': {
            templateUrl:
                     function (stateParams){
+                       //return 'guideposts/' + stateParams.cardname + '/' + stateParams.number + '.html';
                        return 'guideposts/' + stateParams.cardname + '.html';
                }
        },
@@ -200,9 +226,39 @@ app.controller('guidesController', function($scope){
             trafficLayer.setMap(null);
         }
     
-        $scope.guides=[{name:"Guide To Riding DART"}, {name:"What is Home Rule?"},  {name:"How to Become a Teacher in Texas"}];
+        $scope.guides=[{name:"STAAR Testing"}, {name:"What is Home Rule?"},  {name:"How to Become a Teacher in Texas"}];
     
 });
+
+app.controller('toursController', function($scope){  
+
+        $("#leftWrapper").css("visibility", "visible");
+    
+        if(cloudLayer!=null)
+        {
+            weatherLayer.setMap(null);
+            cloudLayer.setMap(null);     
+        }
+        if(trafficLayer!=null)
+        {
+            trafficLayer.setMap(null);
+        }
+    
+        $scope.tours=[
+            {name:"DART Orange Line to DFW"},
+            {name:"Meadows Museum"},  
+            {name:"Downtown Tunnels"}, 
+            {name:"Arboretum"}, 
+            {name:"Vogel Alcove"}, 
+            {name:"The Bridge"}, 
+            {name:"Trinity Audubon Center"}, 
+            {name:"Katy Trail"}, 
+            {name:"White Rock Trails"}, 
+            {name:"Dallas Public Library"}
+        ];
+    
+});
+
 
 app.controller('locationsController', function($scope){
     
@@ -287,8 +343,14 @@ app.controller('trafficController', function($scope, trafficData){
     
     trafficData.getTraffic()
             .success(function (data) {
-                $scope.traffic = data;
-                console.log("succcess from traffic");
+                //$scope.traffic = data;
+                //console.log("succcess from trafficdata["incidents"]");
+                console.log(data);
+                $scope.traffic=[];
+                for (var i=0; i<data["incidents"].length; i++){
+                        $scope.traffic.push(data["incidents"][i]);
+                }
+
             })
             .error(function (error) {
                 $scope.status = 'Unable to load customer data: ' + error.message;
@@ -308,7 +370,7 @@ app.controller('trafficController', function($scope, trafficData){
     
 });
 
-app.controller('weatherController', function($scope){
+app.controller('weatherController', function($scope, weatherData){
     $scope.hello="from weather controller";
     
     $("#leftWrapper").css("visibility", "hidden");
@@ -327,7 +389,25 @@ app.controller('weatherController', function($scope){
         
         $( "#left" ).fadeOut( "slow", function() {
             // Animation complete.
-          });      
+          }); 
+
+    weatherData.getWeather()
+            .success(function (data) {
+                //$scope.weather = data;
+                console.log("succcess from weather");
+                console.log(data);
+                // $scope.weather=[];
+                // for (var i=0; i<data["incidents"].length; i++){
+                //         $scope.weather.push(data["incidents"][i]);
+                // }
+
+            })
+            .error(function (error) {
+                $scope.status = 'Unable to load customer data: ' + error.message;
+            });
+
+
+
    
         
       weatherLayer = new google.maps.weather.WeatherLayer({
@@ -342,6 +422,64 @@ app.controller('weatherController', function($scope){
     
     $scope.init();
     
+});
+
+app.controller('mapsController', function($scope){  
+
+
+    if(cloudLayer!=null)
+    {
+        weatherLayer.setMap(null);
+        cloudLayer.setMap(null);     
+    }
+    if(trafficLayer!=null)
+    {
+        trafficLayer.setMap(null);
+    }
+
+        //$("#leftWrapper").html("");
+        //$("#leftWrapper").css("visibility", "hidden");
+        //$("#leftWrapper").css("visibility", "visible");
+    
+        // if(cloudLayer!=null)
+        // {
+        //     weatherLayer.setMap(null);
+        //     cloudLayer.setMap(null);     
+        // }
+        // if(trafficLayer!=null)
+        // {
+        //     trafficLayer.setMap(null);
+        // }
+        map.setZoom(10);
+        map.panTo(new google.maps.LatLng(32.756302, -96.147348));
+        
+    
+        $scope.maps=[
+        {name:"DISD Trustees", file:''}, 
+        {name:"TX Board of Education", file:''}, 
+        {name:"Dallas County Commissioners", file:''}, 
+        {name:"Cities", file:''}, 
+        {name:"Counties", file:''}, 
+        {name:"Dallas County Constables", file:''}, 
+        {name:"Dallas City Council", file:''}, 
+        {name:"TX House", file:''}, 
+        {name:"TX Senate", file:''},
+        {name:"US House", file:''}
+        ];
+    
+    $scope.loadMap=function(){
+        //get all the images from a folder
+
+//32.756302, -96.147348
+
+        console.log("map load");
+        //remove the other one
+        ctaLayer = new google.maps.KmlLayer({
+          url: 'http://dallasightTwo.azurewebsites.net/Content/DallasCounty2011CommissionerPrecincts.kml',
+          preserveViewport: true
+        });
+        ctaLayer.setMap(map);   
+    }
 });
 
 

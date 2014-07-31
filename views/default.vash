@@ -138,6 +138,24 @@ a.internal
     {
         color:green;
     }
+  .guidepost{
+    background:white;
+    padding:0px;
+  }
+
+  .guidepost p{
+    padding:10px;
+  }
+
+  .header{
+    height:26px;
+    width:100%;
+    background:#254117;
+    color:white;
+    text-align:center;
+    font-family:Bookman Old Style;
+    padding-top:4px;
+}
     
     </style>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -165,7 +183,7 @@ a.internal
 
 <div class="container" ng-controller="myC">
   <div id="rower" class="row">
-  <div id="leftWrapper" class="col-lg-7">
+  <div id="leftWrapper" class="col-lg-6">
 <!--
 
       <div class="box">
@@ -179,7 +197,7 @@ a.internal
   
   </div>	
     <!--        <div ui-view="viewA"></div> -->
-<div class="boxer col-lg-5" id="thing">
+<div class="boxer col-lg-6" id="thing">
       
     <ul id="myMenu" class="nav nav-tabs" role="tablist">
 <!--      <li><a href="#/feed">Feed</a></li>-->
@@ -187,7 +205,7 @@ a.internal
       <li><a href="#events">Events</a></li>
       <li><a href="#locations">Places</a></li>
       <li><a href="#guides">Guides</a></li>
-      <li><a href="#weather">Tours</a></li>
+      <li><a href="#tours">Tours</a></li>
       <li><a href="#traffic">Traffic</a></li>
       <li><a href="#weather">Weather</a></li>
     </ul>
