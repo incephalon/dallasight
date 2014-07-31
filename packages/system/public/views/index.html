@@ -1,3 +1,243 @@
-<section data-ng-controller="IndexController">
-  <h1 mean-token="'home-default'">This is the home view</h1>
-</section>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<title>Dallasight</title>
+<link rel="stylesheet" type="text/css"  href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<!--<link rel="stylesheet" type="text/css"  href="bootstrap/css/bootstrap.min.css">-->
+<style>
+
+html,body
+{
+  height: 100%;
+  padding:10px;
+  /padding-left:0px;
+  //overflow: none;
+  margin:0px;
+}
+html{
+    
+    border:2px solid #254117;
+}
+#thing
+{
+  height:100%;
+  background-color:#fafafa;
+  padding:5px;
+  //border-radius: 5px 5px;
+  box-shadow: 0px 0px 5px gray;
+  overflow-y: auto;
+}
+.boxer{
+  //height:26px;
+  //background: blue;
+  //width:100%;
+  //margin-left:15px;
+  //border: 2px solid red;
+}
+
+#map-canvas
+{
+    position: absolute;
+    left:0px;
+    top:0px;
+    height:100%;
+    width:100%; 
+    opacity: .3;   
+}
+      
+.container { 
+    width: auto;
+    height: 100%;
+}
+#rower
+{
+    height: 99%;
+}
+    
+.box {
+    background-color: white;
+    padding:10px;
+    //border-radius: 5px;
+    box-shadow: 2px 2px 2px #888888;
+    margin-bottom: 15px;
+    height:100%;
+    background: rgba(255, 255, 255, 1);
+    position: relative;
+}
+.col {
+  padding-right:7px;
+  padding-left:7px;
+  
+}
+
+#leftWrapper{
+    height:100%;
+    position: relative;
+}
+
+
+
+.col-margin-left {
+ margin-left:-8px !important;
+}
+#xer{
+    height:15px;
+    width:15px;
+    position:absolute;
+    top:0px;
+    left:0px;
+    cursor: pointer;
+}
+.post{
+    background: white;
+    width:100%;
+    height:100px;
+    margin-top:5px;
+    box-shadow: 0px 0px 1px #254117;
+    position: relative;
+    cursor: pointer;
+}
+.post img{
+    height:100%;
+    width:100px;
+    padding:3px;
+    float:left;
+    //border:1px solid #254117;
+}
+.post p{
+    float:left;
+    margin-left:10px;
+    color:#254117;
+    font-size: 24px;
+    font-family: Gotham;
+}
+#myMenu a
+{
+    color:#254117;
+}  
+.navbar{
+    height:4%;
+    
+}
+#leftWrapper iframe{
+        //margin-left:500px;
+        width:560;
+        height:315;
+}
+
+#leftWrapper svg{
+ 
+        //margin-left:500px;
+        width:560;
+        height:315;
+}
+    
+a.internal
+    {
+        color:green;
+    }
+  .guidepost{
+    background:white;
+    padding:0px;
+  }
+
+  .guidepost p{
+    padding:10px;
+  }
+
+  .header{
+    height:26px;
+    width:100%;
+    background:#254117;
+    color:white;
+    text-align:center;
+    font-family:Bookman Old Style;
+    padding-top:4px;
+}
+    
+    </style>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
+<!--    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>-->
+
+
+<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxmW36spMxoabEUbquyqD_85ryN-F9L_4&sensor=false"></script>-->
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=weather"></script>
+<script src=http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.18/angular.min.js></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-route.min.js"></script>
+<!--    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.min.js"></script>-->
+<script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-resource.js"></script>
+<script src="app/app.js"></script>
+<script src="app/services.js"></script>
+<script src="app/school_list.js"></script>
+</head>
+<body ng-app="myApp">
+<!--    <input type="button" value="Auto Rotate" onclick="autoRotate();">-->
+<div id="map-canvas"></div>
+
+
+
+
+<div class="container" ng-controller="myC">
+  <div id="rower" class="row">
+  <div id="leftWrapper" class="col-lg-6">
+<!--
+
+      <div class="box">
+
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+      </div>
+-->
+
+  <div ui-view="viewA"></div>
+  
+  
+  </div>	
+    <!--        <div ui-view="viewA"></div> -->
+<div class="boxer col-lg-6" id="thing">
+      
+    <ul id="myMenu" class="nav nav-tabs" role="tablist">
+<!--      <li><a href="#/feed">Feed</a></li>-->
+      <li class="active"><a href="#/news">News</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#locations">Places</a></li>
+      <li><a href="#guides">Guides</a></li>
+      <li><a href="#tours">Tours</a></li>
+      <li><a href="#traffic">Traffic</a></li>
+      <li><a href="#weather">Weather</a></li>
+    </ul>
+      
+      <div ui-view="viewB"></div>
+  </div>
+  </div>
+ 
+</div>
+</body>
+<script>
+        var w = window.innerWidth*.56;
+        $("#abs").css('left', ((w / 2) - 400));
+        
+        var blade = $("#thing").width();
+        $("#menu >li").width((blade / 5) - 2);
+
+        $("#newsMenu >li").width((blade / 5) - 2);
+        
+        //$('.nav').tab('show');
+        
+        $('ul.nav-tabs>li').click(function (e) {
+          $('ul.nav-tabs>li').removeClass('active');
+          $(this).addClass('active');
+        });
+        
+        $('#xer').click(function (e) {
+              $("#leftWrapper").html("");
+              $("#leftWrapper").css("visibility", "hidden");
+        });
+
+  </script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<!--<script src="bootstrap/js/bootstrap.min.js"></script>-->
+</html>
