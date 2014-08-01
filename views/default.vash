@@ -5,6 +5,7 @@
 <meta charset="utf-8">
 <title>Dallasight</title>
 <link rel="stylesheet" type="text/css"  href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"  href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
 <!--<link rel="stylesheet" type="text/css"  href="bootstrap/css/bootstrap.min.css">-->
 <style>
 
@@ -154,11 +155,11 @@
         $("#newsMenu >li").width((blade / 5) - 2);
         
         //$('.nav').tab('show');
-        
-        $('ul.nav>li').click(function (e) {
+                $('ul.nav>li').click(function (e) {
           $('ul.nav>li').removeClass('active');
           $(this).addClass('active');
         });
+
         
         $('#xer').click(function (e) {
               $("#leftWrapper").html("");

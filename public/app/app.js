@@ -82,7 +82,7 @@ $stateProvider
         url: "/guides",
         views: {
             "viewA": {
-                templateUrl: "templates/poster.html"
+                templateUrl: "templates/guidesLeft.html"
             },
             "viewB": {
                 controller:'guidesController',
@@ -236,6 +236,7 @@ app.controller('eventsController', function($scope){
 app.controller('guidesController', function($scope){  
 
         $("#leftWrapper").css("visibility", "visible");
+        //$("#thing").css("background-color", "transparent");
     
         if(cloudLayer!=null)
         {
@@ -247,7 +248,17 @@ app.controller('guidesController', function($scope){
             trafficLayer.setMap(null);
         }
     
-        $scope.guides=[{name:"STAAR Testing"}, {name:"What is Home Rule?"},  {name:"How to Become a Teacher in Texas"}];
+        $scope.guides=[
+        {name:"STAAR Testing"}, 
+        {name:"What is Home Rule?"},  
+        {name:"How to Become a Teacher in Texas"},
+        {name:"Dallas City Council"},  
+        {name:"DISD"},
+        {name:"DISD Board"},  
+        {name:"What is a County Comissioner?"},  
+        {name:"DART"},  
+        {name:"Texas Legislature"}
+        ];
     
 });
 
@@ -275,7 +286,8 @@ app.controller('toursController', function($scope){
             {name:"Trinity Audubon Center"}, 
             {name:"Katy Trail"}, 
             {name:"White Rock Trails"}, 
-            {name:"Dallas Public Library"}
+            {name:"Dallas Public Library"},
+            {name:"DMV"}
         ];
     
 });
