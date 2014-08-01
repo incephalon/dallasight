@@ -17,7 +17,7 @@ $stateProvider
         url: "/news",
         views: {
             "viewA": {
-                templateUrl: "templates/newsLeft.html"
+                templateUrl: "templates/images.html"
             },
             "viewB": {
                 templateUrl: "templates/news.html", 
@@ -215,7 +215,11 @@ app.controller('eventsController', function($scope){
             trafficLayer.setMap(null);
         }
     
-        $scope.events=["one", "two"];
+        $scope.events=[
+        {name:"Beyonce/Jay-Z Concert", location:"32.54989, -96.2468"}, 
+        {name:"Real Madrid vs. Roma", location:"32.54989, -96.2468"}, 
+        {name:"DISD Pre-K Round Up", location:"32.54989, -96.2468"}
+        ];
     
     $scope.loadImages=function(eventNumber){
         //get all the images from a folder

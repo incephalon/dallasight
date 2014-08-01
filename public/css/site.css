@@ -1,0 +1,158 @@
+html,body
+{
+  height: 100%;
+  padding:10px;
+  /padding-left:0px;
+  //overflow: none;
+  margin:0px;
+}
+html{
+    
+    border:2px solid #254117;
+}
+#thing
+{
+  height:100%;
+  background-color:#fafafa;
+  padding:0px;
+  //border-radius: 5px 5px;
+  box-shadow: 0px 0px 5px gray;
+  overflow-y: auto;
+}
+/*#view_b{
+  overflow-y:auto;
+}*/
+.boxer{
+  //height:26px;
+  //background: blue;
+  //width:100%;
+  //margin-left:15px;
+  //border: 2px solid red;
+}
+
+#map-canvas
+{
+    position: absolute;
+    left:0px;
+    top:0px;
+    height:100%;
+    width:100%; 
+    opacity: .3;   
+}
+      
+.container { 
+    width: auto;
+    height: 100%;
+}
+#rower
+{
+    height: 99%;
+}
+    
+.box {
+    background-color: white;
+    padding:5px;
+    //border-radius: 5px;
+    box-shadow: 2px 2px 2px #888888;
+    margin-bottom: 15px;
+    height:100%;
+    background: rgba(255, 255, 255, 1);
+    position: relative;
+}
+.col {
+  padding-right:7px;
+  padding-left:7px;
+  
+}
+
+#leftWrapper{
+    height:100%;
+    position: relative;
+}
+.col-margin-left {
+ margin-left:-8px !important;
+}
+#xer{
+    height:15px;
+    width:15px;
+    position:absolute;
+    top:0px;
+    left:0px;
+    cursor: pointer;
+}
+.post{
+    background: white;
+    width:100%;
+    height:100px;
+    margin-top:5px;
+    box-shadow: 0px 0px 1px #254117;
+    position: relative;
+    cursor: pointer;
+}
+.post img{
+    height:100%;
+    width:100px;
+    padding:3px;
+    float:left;
+    //border:1px solid #254117;
+}
+.post p{
+    float:left;
+    margin-left:10px;
+    color:#254117;
+    font-size: 24px;
+    font-family: Gotham;
+}
+#myMenu a
+{
+    color:#254117;
+}
+#leftWrapper iframe{
+        //margin-left:500px;
+        width:560;
+        height:315;
+}
+#leftWrapper svg{
+ 
+        //margin-left:500px;
+        width:560;
+        height:315;
+}   
+a.internal
+  {
+      color:green;
+  }
+.guidepost{
+  background:white;
+  padding:0px;
+}
+
+.guidepost p{
+  padding:10px;
+}
+
+.header{
+  height:26px;
+  width:100%;
+  background:#254117;
+  color:white;
+  text-align:center;
+  font-family:Bookman Old Style;
+  padding-top:4px;
+}
+.navbar{
+  padding:0px;
+  border-radius: 0px;
+  margin:0px;
+  width: 100%;
+  margin-bottom: 10px;
+  height:40px !important;
+}
+.navbar-default{
+ height:40px !important; 
+
+}
+
+.navbar-brand {
+ height:40px !important;
+}
