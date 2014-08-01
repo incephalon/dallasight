@@ -29,6 +29,9 @@ html{
   box-shadow: 0px 0px 5px gray;
   overflow-y: auto;
 }
+/*#view_b{
+  overflow-y:auto;
+}*/
 .boxer{
   //height:26px;
   //background: blue;
@@ -76,9 +79,6 @@ html{
     height:100%;
     position: relative;
 }
-
-
-
 .col-margin-left {
  margin-left:-8px !important;
 }
@@ -122,35 +122,33 @@ html{
         width:560;
         height:315;
 }
-
 #leftWrapper svg{
  
         //margin-left:500px;
         width:560;
         height:315;
-}
-    
+}   
 a.internal
-    {
-        color:green;
-    }
-  .guidepost{
-    background:white;
-    padding:0px;
+  {
+      color:green;
   }
+.guidepost{
+  background:white;
+  padding:0px;
+}
 
-  .guidepost p{
-    padding:10px;
-  }
+.guidepost p{
+  padding:10px;
+}
 
-  .header{
-    height:26px;
-    width:100%;
-    background:#254117;
-    color:white;
-    text-align:center;
-    font-family:Bookman Old Style;
-    padding-top:4px;
+.header{
+  height:26px;
+  width:100%;
+  background:#254117;
+  color:white;
+  text-align:center;
+  font-family:Bookman Old Style;
+  padding-top:4px;
 }
 .navbar{
   padding:0px;
@@ -158,6 +156,15 @@ a.internal
   margin:0px;
   width: 100%;
   margin-bottom: 10px;
+  height:40px !important;
+}
+.navbar-default{
+ height:40px !important; 
+
+}
+
+.navbar-brand {
+ height:40px !important;
 }
     
     </style>
@@ -232,6 +239,7 @@ a.internal
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#news">News</a></li>
+        <li><a href="#guides">Guides</a></li>
         <li><a href="#events">Events</a></li>
         <li><a href="#locations">Places</a></li>
         <li><a href="#tours">Tours</a></li>
@@ -285,7 +293,7 @@ a.internal
 
 
       
-      <div ui-view="viewB"></div>
+      <div id="view_b" ui-view="viewB"></div>
   </div>
   </div>
  
@@ -311,6 +319,7 @@ a.internal
               $("#leftWrapper").html("");
               $("#leftWrapper").css("visibility", "hidden");
         });
+
 
   </script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>

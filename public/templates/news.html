@@ -1,57 +1,137 @@
 <style>
+/*#newsWrapper{
+	padding-left:25px;
+	padding-right:25px;
+}*/
     #title{
         font-style: italic;
         text-align: center;
         color:#254117;
-        font-family: Gotham Narrow;             
+        font-family: Gotham Narrow;  
+        margin-bottom: 25px;           
     }
-
-	.table {
-	    text-align: center;
-	}
+.headline{
+	//text-align: center;
+	margin-left:10px;
+	//font-family: Baskerville;
+	padding-left:5px;
+}
+#menu-outer{
+	width:99%;
+	 margin:0 auto;
+}
 	#horizontal-list {
-		 text-align: center;
+		text-align: center;
 	    display: inline;
 	    list-style: none;
+	    height:36px;
+	    width:100%;
+	    //margin:0 auto;
 	}
 	#horizontal-list li{
 		float:left;
-		text-decoration: underline;
-		font-style: italic;;
+		//text-decoration: underline;
+		font-style: italic;
+	    display:table-cell;
+	    vertical-align: middle;
+	    border:1px solid gray;
+	    //width:25%;
 	}
-	#horizontal-list a{
+	#horizontal-list li a{
+		//padding-top:10px;
 		color:green;
 	}
-	.headline{
-		padding-left:5px;
+	.date{
+		font-size:12px;
+		color:#254117;
+		text-align: center;
+		font-style: italic;
 	}
+	hr{
+		margin-top:3px;
+	}
+	.dateCard{
+background: white;
+padding:10px;
+margin-left:1%;
+margin-right:1%;
+margin-bottom: 5px;
+width:98%;
+box-shadow: 0px 0px 5px #f5f5f5;
+	}
+#tryBox{
+	width:98%;
+	height:36px;
+	//background: green;
+	margin-left:1%;
+	margin-left:1%;
+	box-shadow: 0px 0px 5px #f5f5f5;
+	position: relative;;
+}
+.newsCategory{
+	text-align: center;
+	display: inline-block;
+	padding-top:5px;
+	cursor: pointer;;
+}
+#education{
+	width:35%;
+}
+#city{
+	width:28%;
+}
+#business{
+	width:33%;
+}
 </style>
 
 
 
 
-<div id="menu-outer">
-  <div class="table">
+<!-- <div id="menu-outer">
     <ul id="horizontal-list">
       <li><a href="#">Headlines</a></li>
       <li><a href="#">Guides</a></li>
       <li><a href="#">Passages</a></li>
       <li><a href="#">Views</a></li>
     </ul>
-  </div>
+</div> -->
+
+<div id="tryBox">
+	<span class="newsCategory" id="education">Education</span>
+	<span class="newsCategory" id="city">City</span>
+	<span class="newsCategory" id="business">Business</span>
 </div>
 
+<div id="newsWrapper">
 
-<h2 id="title">News</h2>
+<!-- <h2 id="title">News</h2> -->
 
-<p data-ng-repeat="newsItem in newsItems" data-ng-bind-html="renderHtml(newsItem.title)"></p>
-<p class="headline">Mike Miles got a contract <a class="internal" href="#guideposts/one">extension</a> yesterday.</p>
+<div class="dateCard">
+<p class="date">Thursday, July 31st</p>
+<hr width="60%">
+
+
+<p  class="headline" data-ng-repeat="newsItem in newsItems" data-ng-bind-html="renderHtml(newsItem.title)"></p>
 <p class="headline">Deion Sanders' <a class="internal" href="" ng-click="panHere(32.708034, -96.812912)">Prime Prep</a> is set to close after ...</p>
+</div>
+
+<div class="dateCard">
+<p class="date">Wednesday, July 30th</p>
+<hr width="60%">
+
 <p class="headline">Mayor Mike Rawlings was on Channel 4 <a class="internal"  href="#guideposts/home_rule_youtube">last night</a> to talk about Home Rule</p>
+</div>
+</div>
 
 <script>
 	var wHere= $("#thing").width();
 	$("#horizontal-list>li").width((wHere/4)-15);
+
+	$(".newsCategory").click(function(){
+		$(".newsCategory").css('text-decoration','none');
+		$(this).css('text-decoration','underline');
+	});
 
 </script>
 

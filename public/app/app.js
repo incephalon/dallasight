@@ -29,7 +29,8 @@ $stateProvider
         url: "/events",
         views: {
             "viewA": {
-                templateUrl: "templates/images.html"//, 
+                templateUrl: "templates/images.html",
+                controller:'imagesController' 
 //                controller:function($scope, $stateParams){
 //                    var x = $stateParams.cool;
 //                    console.log(x);
@@ -138,6 +139,17 @@ app.controller('myC', function($scope){
    $scope.hello="world";  
     
 });
+
+app.controller('imagesController', function($scope){
+    
+    var time = 0;
+    $(".box").each(function(index) {
+      $(this).delay(time).fadeIn(3000);
+      time += 1000;
+    });
+    
+});
+
 
 app.controller('newsController', ['$scope', '$sce', 'NewsItems',
   function($scope, $sce, NewsItems) {
@@ -380,7 +392,7 @@ app.controller('weatherController', function($scope, weatherData){
     
     $("#leftWrapper").css("visibility", "hidden");
     
- 
+    map.setZoom(10);
     
     if(trafficLayer!=null)
     {
