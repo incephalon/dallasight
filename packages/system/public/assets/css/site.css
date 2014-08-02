@@ -30,7 +30,7 @@ html{
   //border: 2px solid red;
 }*/
 
-.map-canvas
+.angular-google-map-container
 {
     position: absolute;
     left:0;
