@@ -16,7 +16,7 @@ angular.module('mean.system').config(['$stateProvider', '$urlRouterProvider',
                 url: 'news',
                 views: {
                     'viewA': {
-                        templateUrl: 'system/views/newsLeft.html'
+                        templateUrl: 'system/views/images.html'
                     },
                     'viewB': {
                         templateUrl: 'system/views/news.html',
