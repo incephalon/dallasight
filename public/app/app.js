@@ -1,4 +1,4 @@
-var app = angular.module('myApp',["ui.router", "ngRoute", "ngResource"]);
+var app = angular.module('myApp',["ui.router", "ngRoute", "ngResource", "ngSanitize"]);
                                   
 app.config(function($stateProvider){
 $stateProvider
@@ -17,7 +17,7 @@ $stateProvider
         url: "/news",
         views: {
             "viewA": {
-                templateUrl: "templates/newsLeft.html"
+                templateUrl: "templates/images.html"
             },
             "viewB": {
                 templateUrl: "templates/news.html", 
@@ -29,7 +29,8 @@ $stateProvider
         url: "/events",
         views: {
             "viewA": {
-                templateUrl: "templates/images.html"//, 
+                templateUrl: "templates/images.html",
+                controller:'imagesController' 
 //                controller:function($scope, $stateParams){
 //                    var x = $stateParams.cool;
 //                    console.log(x);
@@ -81,7 +82,7 @@ $stateProvider
         url: "/guides",
         views: {
             "viewA": {
-                templateUrl: "templates/poster.html"
+                templateUrl: "templates/guidesLeft.html"
             },
             "viewB": {
                 controller:'guidesController',
@@ -134,12 +135,28 @@ $stateProvider
                                   
 });
 
-app.controller('newsController', ['$scope', 'NewsItems',
-  function($scope, NewsItems) {
+app.controller('imagesController', function($scope){
+    
+    var time = 0;
+    $(".box").each(function(index) {
+      $(this).delay(time).fadeIn(3000);
+      time += 1000;
+    });
+    
+});
+
+
+app.controller('newsController', ['$scope', '$sce', 'NewsItems',
+  function($scope, $sce, NewsItems) {
 
       NewsItems.query(function(newsItems) {
           $scope.newsItems = newsItems;
       });
+	  
+	  $scope.renderHtml = function(html_code)
+      {
+	    return $sce.trustAsHtml(html_code);
+      };
 
       //$("#leftWrapper").html("");
       //$("#leftWrapper").css("visibility", "hidden");
@@ -193,7 +210,11 @@ app.controller('eventsController', function($scope){
             trafficLayer.setMap(null);
         }
     
-        $scope.events=["one", "two"];
+        $scope.events=[
+        {name:"Beyonce/Jay-Z Concert", location:"32.54989, -96.2468"}, 
+        {name:"Real Madrid vs. Roma", location:"32.54989, -96.2468"}, 
+        {name:"DISD Pre-K Round Up", location:"32.54989, -96.2468"}
+        ];
     
     $scope.loadImages=function(eventNumber){
         //get all the images from a folder
@@ -210,6 +231,7 @@ app.controller('eventsController', function($scope){
 app.controller('guidesController', function($scope){  
 
         $("#leftWrapper").css("visibility", "visible");
+        //$("#thing").css("background-color", "transparent");
     
         if(cloudLayer!=null)
         {
@@ -221,7 +243,17 @@ app.controller('guidesController', function($scope){
             trafficLayer.setMap(null);
         }
     
-        $scope.guides=[{name:"STAAR Testing"}, {name:"What is Home Rule?"},  {name:"How to Become a Teacher in Texas"}];
+        $scope.guides=[
+        {name:"STAAR Testing"}, 
+        {name:"What is Home Rule?"},  
+        {name:"How to Become a Teacher in Texas"},
+        {name:"Dallas City Council"},  
+        {name:"DISD"},
+        {name:"DISD Board"},  
+        {name:"What is a County Comissioner?"},  
+        {name:"DART"},  
+        {name:"Texas Legislature"}
+        ];
     
 });
 
@@ -249,7 +281,8 @@ app.controller('toursController', function($scope){
             {name:"Trinity Audubon Center"}, 
             {name:"Katy Trail"}, 
             {name:"White Rock Trails"}, 
-            {name:"Dallas Public Library"}
+            {name:"Dallas Public Library"},
+            {name:"DMV"}
         ];
     
 });
@@ -370,7 +403,7 @@ app.controller('weatherController', function($scope, weatherData){
     
     $("#leftWrapper").css("visibility", "hidden");
     
- 
+    map.setZoom(10);
     
     if(trafficLayer!=null)
     {
@@ -452,17 +485,18 @@ app.controller('mapsController', function($scope){
         $scope.maps=[
         {name:"DISD Trustees", file:''}, 
         {name:"TX Board of Education", file:''}, 
-        {name:"Dallas County Commissioners", file:''}, 
+        {name:"Dallas County Commissioners", file:'http://dallasightTwo.azurewebsites.net/Content/DallasCounty2011CommissionerPrecincts.kml'}, 
         {name:"Cities", file:''}, 
-        {name:"Counties", file:''}, 
+        {name:"Counties", file:'http://dallasightTwo.azurewebsites.net/Content/DallasCounty2011CommissionerPrecincts.kml'}, 
         {name:"Dallas County Constables", file:''}, 
-        {name:"Dallas City Council", file:''}, 
+        {name:"Dallas City Council", file:'http://dallasightTwo.azurewebsites.net/Content/DallasCityCouncil.kml'}, 
         {name:"TX House", file:''}, 
         {name:"TX Senate", file:''},
-        {name:"US House", file:''}
+        {name:"US House", file:''},
+        {name:"Dallas Parks", file:'http://dallasightTwo.azurewebsites.net/Content/DallasParks.kml'}
         ];
     
-    $scope.loadMap=function(){
+    $scope.loadMap=function(theFile){
         //get all the images from a folder
 
 //32.756302, -96.147348
@@ -470,7 +504,7 @@ app.controller('mapsController', function($scope){
         console.log("map load");
         //remove the other one
         ctaLayer = new google.maps.KmlLayer({
-          url: 'http://dallasightTwo.azurewebsites.net/Content/DallasCounty2011CommissionerPrecincts.kml',
+          url: theFile,
           preserveViewport: true
         });
         ctaLayer.setMap(map);   

@@ -1,4 +1,5 @@
 'use strict';
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://incephalon:lthnia90_@ds050087.mongolab.com:50087/themap');
 
 // Requires meanio
 var mean = require('meanio');
