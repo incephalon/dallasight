@@ -26,6 +26,18 @@ angular.module('mean.system').config(['$stateProvider', '$urlRouterProvider',
                     }
                 }
             })
+            .state('home.guides', {
+                url: "guides",
+                views: {
+                    "viewA": {
+                        templateUrl: "system/views/guidesLeft.html"
+                    },
+                    "viewB": {
+                        controller: 'GuidesController',
+                        templateUrl: "system/views/guides.html"
+                    }
+                }
+            })
             .state('home.events', {
                 url: 'events',
                 views: {
