@@ -134,11 +134,6 @@ $stateProvider
                                   
 });
 
-app.controller('myC', function($scope){
-   $scope.hello="world";  
-    
-});
-
 app.controller('newsController', ['$scope', 'NewsItems',
   function($scope, NewsItems) {
 

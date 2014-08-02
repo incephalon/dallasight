@@ -1,60 +1,58 @@
 <section data-ng-controller="IndexController">
   <div class="map-canvas"></div>
 
-  <div class="container" ng-controller="myC">
+  <div class="container">
     <div class="row rower">
-    <div class="col-lg-6 leftWrapper">
-  <!--
+      <div class="col-lg-6 leftWrapper">
+        <!--
 
-        <div class="box">
+              <div class="box">
 
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-        </div>
-  -->
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+              </div>
+        -->
 
-    <div ui-view="viewA"></div>
-  
-  
-  </div>	
-    <!--        <div ui-view="viewA"></div> -->
-<div class="boxer col-lg-6" class="thing">
-      
-    <ul class="nav nav-tabs myMenu" role="tablist">
-<!--      <li><a href="#/feed">Feed</a></li>-->
-      <li class="active"><a href="#/news">News</a></li>
-      <li><a href="#events">Events</a></li>
-      <li><a href="#locations">Places</a></li>
-      <li><a href="#guides">Guides</a></li>
-      <li><a href="#tours">Tours</a></li>
-      <li><a href="#traffic">Traffic</a></li>
-      <li><a href="#weather">Weather</a></li>
-    </ul>
-      
-      <div ui-view="viewB"></div>
+        <div ui-view="viewA"></div>
+      </div>
+      <!--        <div ui-view="viewA"></div> -->
+      <div class="boxer col-lg-6" class="thing">
+
+        <ul class="nav nav-tabs myMenu" role="tablist">
+          <!--      <li><a href="#/feed">Feed</a></li>-->
+          <li class="active"><a href="#!/news">News</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#locations">Places</a></li>
+          <li><a href="#guides">Guides</a></li>
+          <li><a href="#tours">Tours</a></li>
+          <li><a href="#traffic">Traffic</a></li>
+          <li><a href="#weather">Weather</a></li>
+        </ul>
+
+        <div ui-view="viewB"></div>
+      </div>
+    </div>
+
   </div>
-  </div>
- 
-</div>
 </section>
 <script>
-        var w = window.innerWidth*.56;
-        $("#abs").css('left', ((w / 2) - 400));
-        
-        var blade = $("#thing").width();
-        $("#menu >li").width((blade / 5) - 2);
+  var w = window.innerWidth * .56;
+  $("#abs").css('left', ((w / 2) - 400));
 
-        $("#newsMenu >li").width((blade / 5) - 2);
-        
-        //$('.nav').tab('show');
-        
-        $('ul.nav-tabs>li').click(function (e) {
-          $('ul.nav-tabs>li').removeClass('active');
-          $(this).addClass('active');
-        });
-        
-        $('#xer').click(function (e) {
-              $("#leftWrapper").html("");
-              $("#leftWrapper").css("visibility", "hidden");
-        });
+  var blade = $("#thing").width();
+  $("#menu >li").width((blade / 5) - 2);
 
-  </script>
+  $("#newsMenu >li").width((blade / 5) - 2);
+
+  //$('.nav').tab('show');
+
+  $('ul.nav-tabs>li').click(function (e) {
+    $('ul.nav-tabs>li').removeClass('active');
+    $(this).addClass('active');
+  });
+
+  $('#xer').click(function (e) {
+    $("#leftWrapper").html("");
+    $("#leftWrapper").css("visibility", "hidden");
+  });
+
+</script>
