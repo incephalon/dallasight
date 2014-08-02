@@ -69,6 +69,18 @@ angular.module('mean.system').config(['$stateProvider', '$urlRouterProvider',
                         templateUrl: 'system/views/locations.html'
                     }
                 }
+            })
+            .state('home.tours', {
+                url: 'tours',
+                views: {
+                    'viewA': {
+                        templateUrl: 'system/views/poster.html'
+                    },
+                    'viewB': {
+                        controller: 'ToursController',
+                        templateUrl: 'system/views/tours.html'
+                    }
+                }
             });
     }
 ]).config(['$locationProvider',
