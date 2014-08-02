@@ -14,24 +14,7 @@ $stateProvider
             }
         }
     })
-    .state('guideposts', {
-     //url: '/guideposts/{cardname}{number:(?:/[^/]+)?}',
-     url: '/guideposts/{cardname}',
-     views: {
-       'viewA': {
-           templateUrl:
-                    function (stateParams){
-                       //return 'guideposts/' + stateParams.cardname + '/' + stateParams.number + '.html';
-                       return 'guideposts/' + stateParams.cardname + '.html';
-               }
-       },
-         'viewB': {
-           //template:""
-             templateUrl:"templates/news.html",
-             controller:"newsController"
-       }   
-     }
-    })                                
+
                                   
 });
 

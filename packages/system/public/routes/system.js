@@ -102,6 +102,24 @@ angular.module('mean.system').config(['$stateProvider', '$urlRouterProvider',
                         templateUrl: 'system/views/weather.html'
                     }
                 }
+            })
+            .state('home.guideposts', {
+                //url: '/guideposts/{cardname}{number:(?:/[^/]+)?}',
+                url: 'guideposts/{cardname}',
+                views: {
+                    'viewA': {
+                        templateUrl:
+                            function (stateParams){
+                                //return 'guideposts/' + stateParams.cardname + '/' + stateParams.number + '.html';
+                                return 'system/views/guideposts/' + stateParams.cardname + '.html';
+                            }
+                    },
+                    'viewB': {
+                        //template:''
+                        templateUrl: 'system/views/news.html',
+                        controller: 'NewsController'
+                    }
+                }
             });
     }
 ]).config(['$locationProvider',
