@@ -1,39 +1,38 @@
-html,body
-{
+html, body {
     height: 100%;
-    padding:10px;
-/padding-left:0px;
-//overflow: none;
-    margin:0px;
+    padding: 10px;
+    padding-left : 0;
+    overflow : none;
+    margin: 0;
 }
-html{
 
-    border:2px solid #254117;
+html {
+    border: 2px solid #254117;
 }
-#thing
-{
-    height:100%;
-    background-color:#fafafa;
-    padding:5px;
-//border-radius: 5px 5px;
-    box-shadow: 0px 0px 5px gray;
+
+.thing {
+    height: 100%;
+    background-color: #fafafa;
+    padding: 5px;
+    border-radius : 5 px 5 px;
+    box-shadow: 0 0 5px gray;
     overflow-y: auto;
 }
-.boxer{
-//height:26px;
-//background: blue;
-//width:100%;
-//margin-left:15px;
-//border: 2px solid red;
+
+.boxer {
+    height : 26 px;
+    background : blue;
+    width : 100%;
+    margin-left : 15 px;
+    border : 2 px solid red;
 }
 
-#map-canvas
-{
+.map-canvas {
     position: absolute;
-    left:0px;
-    top:0px;
-    height:100%;
-    width:100%;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
     opacity: .3;
 }
 
@@ -41,158 +40,174 @@ html{
     width: auto;
     height: 100%;
 }
-#rower
-{
+
+.rower {
     height: 99%;
 }
 
 .box {
     background-color: white;
-    padding:10px;
-//border-radius: 5px;
+    padding: 10px;
+    border-radius : 5 px;
     box-shadow: 2px 2px 2px #888888;
     margin-bottom: 15px;
-    height:100%;
-    background: rgba(255, 255, 255, 1);
+    height: 100%;
+    background: rgb(255, 255, 255);
     position: relative;
 }
+
 .col {
-    padding-right:7px;
-    padding-left:7px;
+    padding-right: 7px;
+    padding-left: 7px;
 
 }
 
-#leftWrapper{
-    height:100%;
+.leftWrapper {
+    height: 100%;
     position: relative;
 }
-
-
 
 .col-margin-left {
-    margin-left:-8px !important;
+    margin-left: -8px !important;
 }
-#xer{
-    height:15px;
-    width:15px;
-    position:absolute;
-    top:0px;
-    left:0px;
+
+.xer {
+    height: 15px;
+    width: 15px;
+    position: absolute;
+    top: 0;
+    left: 0;
     cursor: pointer;
 }
-.post{
+
+.post {
     background: white;
-    width:100%;
-    height:100px;
-    margin-top:5px;
-    box-shadow: 0px 0px 1px #254117;
+    width: 100%;
+    height: 100px;
+    margin-top: 5px;
+    box-shadow: 0 0 1px #254117;
     position: relative;
     cursor: pointer;
 }
-.post img{
-    height:100%;
-    width:100px;
-    padding:3px;
-    float:left;
-//border:1px solid #254117;
+
+.post img {
+    height: 100%;
+    width: 100px;
+    padding: 3px;
+    float: left;
+    border : 1 px solid #254117;
 }
-.post p{
-    float:left;
-    margin-left:10px;
-    color:#254117;
+
+.post p {
+    float: left;
+    margin-left: 10px;
+    color: #254117;
     font-size: 24px;
     font-family: Gotham;
 }
-#myMenu a
-{
-    color:#254117;
-}
-.navbar{
-    height:4%;
 
-}
-#leftWrapper iframe{
-//margin-left:500px;
-    width:560;
-    height:315;
+.myMenu a {
+    color: #254117;
 }
 
-#leftWrapper svg{
+.navbar {
+    height: 4%;
 
-//margin-left:500px;
-    width:560;
-    height:315;
 }
 
-a.internal
-{
-    color:green;
-}
-.guidepost{
-    background:white;
-    padding:0px;
+.leftWrapper iframe {
+    margin-left : 500 px;
+    width: 560;
+    height: 315;
 }
 
-.guidepost p{
-    padding:10px;
+.leftWrapper svg {
+
+    margin-left : 500 px;
+    width: 560;
+    height: 315;
 }
 
-.header{
-    height:26px;
-    width:100%;
-    background:#254117;
-    color:white;
-    text-align:center;
-    font-family:Bookman Old Style;
-    padding-top:4px;
+a.internal {
+    color: green;
+}
+
+.guidepost {
+    background: white;
+    padding: 0;
+}
+
+.guidepost p {
+    padding: 10px;
+}
+
+.header {
+    height: 26px;
+    width: 100%;
+    background: #254117;
+    color: white;
+    text-align: center;
+    font-family: Bookman Old Style;
+    padding-top: 4px;
 }
 
 .page-header {
-	padding-bottom: 0;
-	margin: 0;
-	border-bottom: 0;
+    padding-bottom: 0;
+    margin: 0;
+    border-bottom: 0;
 }
+
 .page-header .navbar-nav {
-	float: right;
+    float: right;
 }
-.page-header>div>div,
-.page-header>div>ul {
-	display: inline-block;
+
+.page-header > div > div,
+.page-header > div > ul {
+    display: inline-block;
 }
+
 .text-edit {
-	padding: 13px 0 0 0;
+    padding: 13px 0 0 0;
 }
+
 .account {
-	text-align: right;
+    text-align: right;
 }
-.account>div,
-.account>ul {
-	text-align: left;
+
+.account > div,
+.account > ul {
+    text-align: left;
 }
-.navbar .nav>li>a.brand {
-	padding-left: 20px;
-	margin-left: 0
+
+.navbar .nav > li > a.brand {
+    padding-left: 20px;
+    margin-left: 0
 }
+
 .content {
-	width: 100%
+    width: 100%
 }
+
 footer {
-	position: fixed;
-	left: 0;
-	bottom: 0;
-	height: 30px;
-	width: 100%;
-	background: #ddd;
-	-webkit-box-shadow: 0 8px 6px 6px black;
-	-moz-box-shadow: 0 8px 6px 6px black;
-	box-shadow: 0 8px 6px 6px black
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 30px;
+    width: 100%;
+    background: #ddd;
+    -webkit-box-shadow: 0 8px 6px 6px black;
+    -moz-box-shadow: 0 8px 6px 6px black;
+    box-shadow: 0 8px 6px 6px black
 }
+
 footer p {
-	padding: 5px 0 12px 10px
+    padding: 5px 0 12px 10px
 }
+
 .ng-invalid.ng-dirty {
-	border-color: #FA787E;
+    border-color: #FA787E;
 }
+
 .ng-valid.ng-dirty {
-	border-color: #78FA89;
+    border-color: #78FA89;
 }

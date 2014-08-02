@@ -1,28 +1,25 @@
 <section data-ng-controller="IndexController">
-  <div id="map-canvas"></div>
+  <div class="map-canvas"></div>
 
+  <div class="container" ng-controller="myC">
+    <div class="row rower">
+    <div class="col-lg-6 leftWrapper">
+  <!--
 
+        <div class="box">
 
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        </div>
+  -->
 
-<div class="container" ng-controller="myC">
-  <div id="rower" class="row">
-  <div id="leftWrapper" class="col-lg-6">
-<!--
-
-      <div class="box">
-
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-      </div>
--->
-
-  <div ui-view="viewA"></div>
+    <div ui-view="viewA"></div>
   
   
   </div>	
     <!--        <div ui-view="viewA"></div> -->
-<div class="boxer col-lg-6" id="thing">
+<div class="boxer col-lg-6" class="thing">
       
-    <ul id="myMenu" class="nav nav-tabs" role="tablist">
+    <ul class="nav nav-tabs myMenu" role="tablist">
 <!--      <li><a href="#/feed">Feed</a></li>-->
       <li class="active"><a href="#/news">News</a></li>
       <li><a href="#events">Events</a></li>
