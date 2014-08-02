@@ -27,14 +27,14 @@ angular.module('mean.system').config(['$stateProvider', '$urlRouterProvider',
                 }
             })
             .state('home.guides', {
-                url: "guides",
+                url: 'guides',
                 views: {
-                    "viewA": {
-                        templateUrl: "system/views/guidesLeft.html"
+                    'viewA': {
+                        templateUrl: 'system/views/guidesLeft.html'
                     },
-                    "viewB": {
+                    'viewB': {
                         controller: 'GuidesController',
-                        templateUrl: "system/views/guides.html"
+                        templateUrl: 'system/views/guides.html'
                     }
                 }
             })
@@ -79,6 +79,18 @@ angular.module('mean.system').config(['$stateProvider', '$urlRouterProvider',
                     'viewB': {
                         controller: 'ToursController',
                         templateUrl: 'system/views/tours.html'
+                    }
+                }
+            })
+            .state('home.traffic', {
+                url: 'traffic',
+                views: {
+                    'viewA': {
+                        templateUrl: 'system/views/poster.html'
+                    },
+                    'viewB': {
+                        controller: 'TrafficController',
+                        templateUrl: 'system/views/traffic.html'
                     }
                 }
             });
