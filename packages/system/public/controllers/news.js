@@ -16,12 +16,14 @@ angular.module('mean.system').controller('newsController', ['$scope', '$sce', 'N
         //$("#leftWrapper").css("visibility", "hidden");
         $("#leftWrapper").css("visibility", "visible");
 
-        if (cloudLayer != null) {
-            weatherLayer.setMap(null);
-            cloudLayer.setMap(null);
+        if($scope.cloudLayer!=null)
+        {
+            $scope.weatherLayer.setMap(null);
+            $scope.cloudLayer.setMap(null);
         }
-        if (trafficLayer != null) {
-            trafficLayer.setMap(null);
+        if($scope.trafficLayer!=null)
+        {
+            $scope.trafficLayer.setMap(null);
         }
 
         $scope.panHere = function (lat, long) {

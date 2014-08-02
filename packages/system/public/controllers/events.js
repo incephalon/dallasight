@@ -5,14 +5,14 @@ angular.module('mean.system').controller('EventsController', function($scope){
     //$('#leftWrapper').css('visibility', 'hidden');
     $('#leftWrapper').css('visibility', 'visible');
 
-    if(cloudLayer)
+    if($scope.cloudLayer!=null)
     {
-        weatherLayer.setMap(null);
-        cloudLayer.setMap(null);
+        $scope.weatherLayer.setMap(null);
+        $scope.cloudLayer.setMap(null);
     }
-    if(trafficLayer !== null)
+    if($scope.trafficLayer!=null)
     {
-        trafficLayer.setMap(null);
+        $scope.trafficLayer.setMap(null);
     }
 
     $scope.events=[
