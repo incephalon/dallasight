@@ -22,9 +22,15 @@
 <script src=http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.18/angular.min.js></script>
 <script src=http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.18/angular-sanitize.min.js></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-route.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.17/angular-animate.js"></script>
 <!--    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.min.js"></script>-->
 <script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-resource.js"></script>
+
+<script type="text/javascript" src="http://oauth.googlecode.com/svn/code/javascript/oauth.js"></script>
+<script type="text/javascript" src="http://oauth.googlecode.com/svn/code/javascript/sha1.js"></script>
+
+        
 <script src="app/app.js"></script>
 <script src="app/services.js"></script>
 <script src="app/school_list.js"></script>

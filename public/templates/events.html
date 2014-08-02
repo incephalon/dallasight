@@ -18,6 +18,20 @@
     color:gray;
 }*/
 
+.eventTitle{
+  color:green;
+
+}
+.where{
+  color:gray;
+  font-size: 12px;
+}
+.description{
+  color:black;
+  font-size: 12px;
+}
+
+
 </style>
 
 <ul id="eventsWeek" class="green nav nav-pills nav-justified">
@@ -30,7 +44,11 @@
       <li><a href="#">Monday</a></li>
 </ul>
 
-<div ng-repeat="n in events" class="post" ng-click="loadImages(one)">{{n.name}}</div>
+<div ng-repeat="n in events" class="event" ng-click="loadImages(one)">
+  <h4 class="eventTitle">{{n.name}}</h4>
+  <div class="where">{{n.where}}</div>
+  <p class="description">{{n.description}}</p>
+</div>
 
 
 

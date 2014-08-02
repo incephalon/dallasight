@@ -1,4 +1,4 @@
-var app = angular.module('myApp',["ui.router", "ngRoute", "ngResource", "ngSanitize"]);
+var app = angular.module('myApp',["ui.router", "ngRoute", "ngResource", "ngSanitize","ngAnimate"]);
                                   
 app.config(function($stateProvider){
 $stateProvider
@@ -6,7 +6,7 @@ $stateProvider
         url: "/",
         views: {
             "viewA": {
-                templateUrl: "templates/newsLeft.html"
+                templateUrl: "templates/guidesLeft.html"
             },
             "viewB": {
                 templateUrl: "templates/news.html"
@@ -17,7 +17,7 @@ $stateProvider
         url: "/news",
         views: {
             "viewA": {
-                templateUrl: "templates/images.html"
+                templateUrl: "templates/guidesLeft.html"
             },
             "viewB": {
                 templateUrl: "templates/news.html", 
@@ -204,6 +204,8 @@ app.controller('eventsController', function($scope){
         //$("#leftWrapper").html("");
         //$("#leftWrapper").css("visibility", "hidden");
         $("#leftWrapper").css("visibility", "visible");
+        $( "#map-canvas" ).fadeTo( "slow" , .3);
+        $( "#thing" ).css( "height" , "100%");
     
         if(cloudLayer!=null)
         {
@@ -216,9 +218,20 @@ app.controller('eventsController', function($scope){
         }
     
         $scope.events=[
-        {name:"Beyonce/Jay-Z Concert", location:"32.54989, -96.2468"}, 
-        {name:"Real Madrid vs. Roma", location:"32.54989, -96.2468"}, 
-        {name:"DISD Pre-K Round Up", location:"32.54989, -96.2468"}
+            {name:"On the Run Tour (Beyonce & Jay-Z)", 
+            where:'American Airlines Center',  
+            location:"32.54989, -96.2468",
+            description:'Beyonce and Jay-Z are coming!'
+            }, 
+            {name:"Real Madrid vs. AS Roma", 
+            where:'Cotton Bowl', 
+            location:"32.54989, -96.2468",
+            description:'Ronaldo brings his Real Madrid club of La Liga to Dallas to take on AS Roma'
+            },  
+            {name:"DISD Pre-K Round Up", 
+            where:'Zumaya Middle School',
+            location:"32.54989, -96.2468",
+            description:'Sign up for child for free Pre-K in DISD this saturday. Bounce houses, food and fun'}
         ];
     
     $scope.loadImages=function(eventNumber){
@@ -236,6 +249,8 @@ app.controller('eventsController', function($scope){
 app.controller('guidesController', function($scope){  
 
         $("#leftWrapper").css("visibility", "visible");
+        $( "#map-canvas" ).fadeTo( "slow" , .3);
+        $( "#thing" ).css( "height" , "100%");
         //$("#thing").css("background-color", "transparent");
     
         if(cloudLayer!=null)
@@ -306,6 +321,7 @@ app.controller('locationsController', function($scope){
     }
     
     $("#leftWrapper").css("visibility", "hidden");
+    $("#thing").css("height", "100%");
      
    $( "#map-canvas" ).fadeTo( "slow" , .3, function() {
     // Animation complete.
@@ -331,8 +347,21 @@ app.controller('locationsController', function($scope){
         console.log(thisLocation);
        if(thisLocation==="Schools")
        {
+            $scope.fillSchools();
+       }
+      else if(thisLocation==="Restaurants")
+       {
+            $scope.fillRestaurants();
+       }
+    };
+
+
+
+    $scope.fillSchools=function(){
             console.log(schools);
                 //add them to the map
+
+                $("#map-canvas").css('opacity', 1);
        
        var offset = Math.floor(Math.random() * 3) * 16; // pick one of the three icons in the sprite
     var count=468;
@@ -344,19 +373,83 @@ app.controller('locationsController', function($scope){
                 var schoolLocation = new google.maps.LatLng(schools[i]['latitude'], schools[i]['longitude']);
                 marker = new google.maps.Marker({
                     position: schoolLocation, 
-                    map: map,
-                    icon: new google.maps.MarkerImage(
-                    'images/x2.jpg', // my 16x48 sprite with 3 circular icons
-                    new google.maps.Size(16*scaleFactor, 16*scaleFactor), // desired size
-                    new google.maps.Point(0, offset*scaleFactor), // offset within the scaled sprite
-                    new google.maps.Point(size/2, size/2), // anchor point is half of the desired size
-                    new google.maps.Size(16*scaleFactor, 48*scaleFactor) // scaled size of the entire sprite
-       )
+                    map: map
+                    //icon: new google.maps.MarkerImage(
+                    // 'images/x2.jpg', // my 16x48 sprite with 3 circular icons
+                    // new google.maps.Size(16*scaleFactor, 16*scaleFactor), // desired size
+                    // new google.maps.Point(0, offset*scaleFactor), // offset within the scaled sprite
+                    // new google.maps.Point(size/2, size/2), // anchor point is half of the desired size
+                    // new google.maps.Size(16*scaleFactor, 48*scaleFactor) // scaled size of the entire sprite
+                    //)
                 
                 });
             }
-       }
-    }
+
+
+    };
+
+
+
+        $scope.fillRestaurants=function(){
+                    var auth = {
+                //
+                // Update with your auth tokens.
+                //
+                consumerKey : "cnnas9ADMQjJHHOp5vc4oQ",
+                consumerSecret : "1pIjOutCcCEOFZyaXjSI_KIDsZg",
+                accessToken : "sBRbUrUfOAu76r4bc-fPlGdw_sxkHJhy",
+                // This example is a proof of concept, for how to use the Yelp v2 API with javascript.
+                // You wouldn't actually want to expose your access token secret like this in a real application.
+                accessTokenSecret : "zhyYLJ9hJlOlwRMFCfDIY0wsprY",
+                serviceProvider : {
+                    signatureMethod : "HMAC-SHA1"
+                }
+            };
+
+            var terms = 'food';
+            var near = 'San+Francisco';
+
+            var accessor = {
+                consumerSecret : auth.consumerSecret,
+                tokenSecret : auth.accessTokenSecret
+            };
+            parameters = [];
+            parameters.push(['term', terms]);
+            parameters.push(['location', near]);
+            parameters.push(['callback', 'cb']);
+            parameters.push(['oauth_consumer_key', auth.consumerKey]);
+            parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
+            parameters.push(['oauth_token', auth.accessToken]);
+            parameters.push(['oauth_signature_method', 'HMAC-SHA1']);
+
+            var message = {
+                'action' : 'http://api.yelp.com/v2/search',
+                'method' : 'GET',
+                'parameters' : parameters
+            };
+
+            OAuth.setTimestampAndNonce(message);
+            OAuth.SignatureMethod.sign(message, accessor);
+
+            var parameterMap = OAuth.getParameterMap(message.parameters);
+            console.log(parameterMap);
+
+            $.ajax({
+                'url' : message.action,
+                'data' : parameterMap,
+                'dataType' : 'jsonp',
+                'jsonpCallback' : 'cb',
+                'success' : function(data, textStats, XMLHttpRequest) {
+                    console.log("resturants");
+                    console.log(data);
+                    //$("body").append(output);
+                }
+            });
+
+
+
+    };
+    
     
 });
 
@@ -365,6 +458,12 @@ app.controller('trafficController', function($scope, trafficData){
     //$( "#leftWrapper" ).load( "cards/one.html" );
     
     $("#leftWrapper").css("visibility", "hidden");
+    $("#thing").css("height", "auto");
+    $( "#map-canvas" ).fadeTo( "slow" , 1);
+    // $( "#map-canvas" ).fadeTo( "slow" , 1, function(){
+
+    // });
+    map.setZoom(12);
     
     $scope.hello="from traffic controller";
     
@@ -398,7 +497,12 @@ app.controller('trafficController', function($scope, trafficData){
     
     $scope.init();
     
-    
+    $scope.goToAccident=function(lat, long)
+    {
+        //pan map there
+        map.panTo(new google.maps.LatLng(lat, long));
+
+    };
     //get weather stuff (from service?)
     
 });
