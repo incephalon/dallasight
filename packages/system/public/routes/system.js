@@ -93,6 +93,15 @@ angular.module('mean.system').config(['$stateProvider', '$urlRouterProvider',
                         templateUrl: 'system/views/traffic.html'
                     }
                 }
+            })
+            .state('home.weather', {
+                url: 'weather',
+                views: {
+                    'viewB': {
+                        controller: 'WeatherController',
+                        templateUrl: 'system/views/weather.html'
+                    }
+                }
             });
     }
 ]).config(['$locationProvider',
