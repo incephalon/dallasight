@@ -13,18 +13,18 @@ $stateProvider
             }
         }
     })
-    .state('news', {
-        url: "/news",
-        views: {
-            "viewA": {
-                templateUrl: "templates/images.html"
-            },
-            "viewB": {
-                templateUrl: "templates/news.html", 
-                controller:"newsController"
-            }
-        }
-    })
+//    .state('news', {
+//        url: "/news",
+//        views: {
+//            "viewA": {
+//                templateUrl: "templates/images.html"
+//            },
+//            "viewB": {
+//                templateUrl: "templates/news.html",
+//                controller:"newsController"
+//            }
+//        }
+//    })
     .state('events', {
         url: "/events",
         views: {
