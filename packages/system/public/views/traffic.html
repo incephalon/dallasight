@@ -1,3 +1,20 @@
-<div ng-repeat="n in traffic" class="post">
-    <p>{{n.fullDesc}}</p>
+<style>
+.trafficIcon{
+	height:25px;
+	width: 25px;
+	display: inline;
+}
+.traffic{
+	background: white;
+	margin-bottom:5px;
+    box-shadow: 0px 0px 1px #254117;
+    width:98%;
+    margin-left: 1%;
+    cursor: pointer;
+}
+</style>
+
+<div ng-repeat="n in traffic" class="traffic" ng-click="goToAccident(n.lat, n.lng)">
+	<img class="trafficIcon" src="{{n.iconURL}}"/>
+    <span>{{n.fullDesc}}</span>
 </div>

@@ -1,4 +1,4 @@
-var app = angular.module('myApp',["ui.router", "ngRoute", "ngResource", "ngSanitize"]);
+var app = angular.module('myApp',["ui.router", "ngRoute", "ngResource", "ngSanitize","ngAnimate"]);
                                   
 app.config(function($stateProvider){
 $stateProvider
