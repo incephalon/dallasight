@@ -11,6 +11,12 @@ module.exports = function(grunt) {
   if (process.env.NODE_ENV !== 'production') {
     require('time-grunt')(grunt);
   }
+  
+  grunt.file.setBase(__dirname);  
+  if (process.env['LINEMAN_MAIN'] === null || process.env['LINEMAN_MAIN'] === undefined) {  
+    process.env['LINEMAN_MAIN'] = 'lineman';
+  }  
+  require(process.env['LINEMAN_MAIN']).config.grunt.run(grunt);
 
   // Project Configuration
   grunt.initConfig({
