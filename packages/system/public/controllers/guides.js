@@ -3,6 +3,8 @@
 angular.module('mean.system').controller('GuidesController', function($scope){
 
     $('#leftWrapper').css('visibility', 'visible');
+    $( "#map-canvas" ).fadeTo( "slow" , .3);
+    $( "#thing" ).css( "height" , "100%");
     //$('#thing').css('background-color', 'transparent');
 
     if($scope.cloudLayer!=null)

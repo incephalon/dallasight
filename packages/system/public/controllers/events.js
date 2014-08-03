@@ -4,6 +4,8 @@ angular.module('mean.system').controller('EventsController', function($scope){
     //$('#leftWrapper').html('');
     //$('#leftWrapper').css('visibility', 'hidden');
     $('#leftWrapper').css('visibility', 'visible');
+    $( "#map-canvas" ).fadeTo( "slow" , .3);
+    $( "#thing" ).css( "height" , "100%");
 
     if($scope.cloudLayer!=null)
     {
@@ -16,9 +18,20 @@ angular.module('mean.system').controller('EventsController', function($scope){
     }
 
     $scope.events=[
-        {name:'Beyonce/Jay-Z Concert', location:'32.54989, -96.2468'},
-        {name:'Real Madrid vs. Roma', location:'32.54989, -96.2468'},
-        {name:'DISD Pre-K Round Up', location:'32.54989, -96.2468'}
+        {name:"On the Run Tour (Beyonce & Jay-Z)",
+            where:'American Airlines Center',
+            location:"32.54989, -96.2468",
+            description:'Beyonce and Jay-Z are coming!'
+        },
+        {name:"Real Madrid vs. AS Roma",
+            where:'Cotton Bowl',
+            location:"32.54989, -96.2468",
+            description:'Ronaldo brings his Real Madrid club of La Liga to Dallas to take on AS Roma'
+        },
+        {name:"DISD Pre-K Round Up",
+            where:'Zumaya Middle School',
+            location:"32.54989, -96.2468",
+            description:'Sign up for child for free Pre-K in DISD this saturday. Bounce houses, food and fun'}
     ];
 
     $scope.loadImages=function(eventNumber){

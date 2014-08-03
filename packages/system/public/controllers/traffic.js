@@ -6,6 +6,12 @@ angular.module('mean.system').controller('TrafficController', ['$scope', 'traffi
         //$( '#leftWrapper' ).load( 'cards/one.html' );
 
         $('#leftWrapper').css('visibility', 'hidden');
+        $("#thing").css("height", "auto");
+        $( "#map-canvas" ).fadeTo( "slow" , 1);
+        // $( "#map-canvas" ).fadeTo( "slow" , 1, function(){
+
+        // });
+        map.setZoom(12);
 
         $scope.hello = 'from traffic controller';
 
@@ -38,6 +44,12 @@ angular.module('mean.system').controller('TrafficController', ['$scope', 'traffi
 
         //$scope.init();
 
+        $scope.goToAccident=function(lat, long)
+        {
+            //pan map there
+            map.panTo(new google.maps.LatLng(lat, long));
+
+        };
 
         //get weather stuff (from service?)
     }
