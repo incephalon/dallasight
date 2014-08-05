@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('mean.system', ['mean-factory-interceptor', 'google-maps']);
+angular.module('mean.system', ['mean-factory-interceptor']);
