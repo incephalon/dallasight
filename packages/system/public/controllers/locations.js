@@ -99,7 +99,7 @@ angular.module('mean.system').controller('LocationsController', function($scope)
             consumerSecret : auth.consumerSecret,
             tokenSecret : auth.accessTokenSecret
         };
-        parameters = [];
+        var parameters = [];
         parameters.push(['term', terms]);
         parameters.push(['location', near]);
         parameters.push(['callback', 'cb']);

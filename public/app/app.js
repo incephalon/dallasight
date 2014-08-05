@@ -21,15 +21,15 @@ $stateProvider
 app.controller('mapsController', function($scope){
 
 
-    if(cloudLayer!=null)
-    {
-        weatherLayer.setMap(null);
-        cloudLayer.setMap(null);     
-    }
-    if(trafficLayer!=null)
-    {
-        trafficLayer.setMap(null);
-    }
+//    if(cloudLayer!=null)
+//    {
+//        weatherLayer.setMap(null);
+//        cloudLayer.setMap(null);
+//    }
+//    if(trafficLayer!=null)
+//    {
+//        trafficLayer.setMap(null);
+//    }
 
         //$("#leftWrapper").html("");
         //$("#leftWrapper").css("visibility", "hidden");

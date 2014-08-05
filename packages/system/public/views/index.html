@@ -1,5 +1,7 @@
 <section data-ng-controller="IndexController" class="container">
-  <google-map center="map.center" zoom="map.zoom" options="map.options" ng-class="{masked:mapBehavior.showMapMask}"></google-map>
+  <google-map center="map.center" zoom="map.zoom" options="map.options" ng-class="{masked:mapBehavior.showMapMask}">
+    <layer type="TrafficLayer" show="map.showTraffic"></layer>
+  </google-map>
 
   <div class="container">
     <div class="row rower">

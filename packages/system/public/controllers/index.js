@@ -16,10 +16,12 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
                 disableDefaultUI: true
                 //heading: 90,
                 //tilt: 45
-            }
+            },
+            showTraffic: false
         };
         $scope.mapBehavior = { 
             showMapMask: false
+
         };
     }
 ]);

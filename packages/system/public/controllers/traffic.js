@@ -8,17 +8,14 @@ angular.module('mean.system').controller('TrafficController', ['$scope', 'traffi
         $('#leftWrapper').css('visibility', 'hidden');
         $("#thing").css("height", "auto");
         $scope.mapBehavior.showMapMask = false;
-        // $( "#map-canvas" ).fadeTo( "slow" , 1, function(){
-
-        // });
-        map.setZoom(12);
+        $scope.map.zoom = 12;
+        $scope.map.showTraffic = true;
+//        $scope.map.showClouds = false;
+//        $scope.$on('$viewContentLoaded', function () {
+//            $scope.map.showTraffic = true;
+//        });
 
         $scope.hello = 'from traffic controller';
-
-        if ($scope.cloudLayer != null) {
-            $scope.weatherLayer.setMap(null);
-            $scope.cloudLayer.setMap(null);
-        }
 
         trafficData.getTraffic()
             .success(function (data) {
@@ -36,13 +33,6 @@ angular.module('mean.system').controller('TrafficController', ['$scope', 'traffi
             });
 
         //this where I could initialize stuff?
-
-        $scope.init = function () {
-            $scope.trafficLayer = new google.maps.TrafficLayer();
-            $scope.trafficLayer.setMap($scope.map);
-        };
-
-        //$scope.init();
 
         $scope.goToAccident=function(lat, long)
         {
