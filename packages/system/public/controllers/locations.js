@@ -15,9 +15,7 @@ angular.module('mean.system').controller('LocationsController', function($scope)
     $('#leftWrapper').css('visibility', 'hidden');
     $("#thing").css("height", "100%");
 
-    $( '#map-canvas' ).fadeTo( 'slow' , .3, function() {
-        // Animation complete.
-    });
+    $scope.mapBehavior.showMapMask = true;
 
     $scope.locations=[
         'Restaurants',

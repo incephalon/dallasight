@@ -30,6 +30,19 @@ html{
   //border: 2px solid red;
 }*/
 
+.angular-google-map > .angular-google-map {
+    opacity: 1;
+    -webkit-transition: opacity 0.25s ease-in;
+    -moz-transition: opacity 0.25s ease-in;
+    -o-transition: opacity 0.25s ease-in;
+    -ms-transition: opacity 0.25s ease-in;
+    transition: opacity 0.25s ease-in;
+}
+
+.angular-google-map.masked > .angular-google-map {
+    opacity: 0.3;
+}
+
 .angular-google-map-container
 {
     position: absolute;
@@ -37,7 +50,6 @@ html{
     top:0;
     height:100%;
     width:100%; 
-    opacity: .3;   
 }
       
 .container { 

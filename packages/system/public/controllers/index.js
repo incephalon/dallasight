@@ -18,5 +18,8 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
                 //tilt: 45
             }
         };
+        $scope.mapBehavior = { 
+            showMapMask: false
+        };
     }
 ]);

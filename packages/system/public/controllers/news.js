@@ -6,6 +6,8 @@ angular.module('mean.system').controller('newsController', ['$scope', '$sce', 'N
         NewsItems.query(function(newsItems) {
             $scope.newsItems = newsItems;
         });
+        
+        $scope.mapBehavior.showMapMask = true;
 
         $scope.renderHtml = function(html_code)
         {

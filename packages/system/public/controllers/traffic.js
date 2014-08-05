@@ -7,7 +7,7 @@ angular.module('mean.system').controller('TrafficController', ['$scope', 'traffi
 
         $('#leftWrapper').css('visibility', 'hidden');
         $("#thing").css("height", "auto");
-        $( "#map-canvas" ).fadeTo( "slow" , 1);
+        $scope.mapBehavior.showMapMask = false;
         // $( "#map-canvas" ).fadeTo( "slow" , 1, function(){
 
         // });

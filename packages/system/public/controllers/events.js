@@ -4,7 +4,7 @@ angular.module('mean.system').controller('EventsController', function($scope){
     //$('#leftWrapper').html('');
     //$('#leftWrapper').css('visibility', 'hidden');
     $('#leftWrapper').css('visibility', 'visible');
-    $( "#map-canvas" ).fadeTo( "slow" , .3);
+    $scope.mapBehavior.showMapMask = true;
     $( "#thing" ).css( "height" , "100%");
 
     if($scope.cloudLayer!=null)

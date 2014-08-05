@@ -3,6 +3,7 @@
 angular.module('mean.system').controller('ToursController', function($scope){
 
     $('#leftWrapper').css('visibility', 'visible');
+    $scope.mapBehavior.showMapMask = true;
 
     if($scope.cloudLayer!=null)
     {
