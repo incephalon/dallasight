@@ -13,6 +13,7 @@ angular.module('mean.system').controller('TrafficController', ['$scope', '$timeo
             $scope.map.zoom = 12;
             $scope.map.showClouds = false;
             $scope.map.showTraffic = true;
+            $scope.showLeft=false;
         });
 
         $scope.hello = 'from traffic controller';

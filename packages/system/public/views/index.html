@@ -1,12 +1,12 @@
 <section data-ng-controller="IndexController" class="container">
-  <google-map center="map.center" zoom="map.zoom" options="map.options" ng-class="{masked:map.showMapMask}">
+  <google-map center="map.center"  draggable="true" zoom="map.zoom" options="map.options" ng-class="{masked:map.showMapMask}">
     <layer type="TrafficLayer" show="map.showTraffic"></layer>
     <layer namespace="weather" type="WeatherLayer" show="map.showClouds"></layer>
   </google-map>
 
   <div class="container">
     <div class="row rower">
-      <div class="col-lg-7 leftWrapper">
+      <div class="col-lg-7">
         <!--
 
               <div class="box">
@@ -14,8 +14,9 @@
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
               </div>
         -->
-
-        <div ui-view="viewA"></div>
+        <div class="leftWrapper" ng-show="showLeft">
+          <div ui-view="viewA"></div>
+        </div>
       </div>
       <!--        <div ui-view="viewA"></div> -->
       <div class="col-lg-5 thing">
