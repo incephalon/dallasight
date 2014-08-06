@@ -23,6 +23,6 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
 
         };
 
-        $scope.showLeft=false;
+        $scope.showLeft=true;
     }
 ]);

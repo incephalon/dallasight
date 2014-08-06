@@ -114,7 +114,7 @@ angular.module('mean.system').config(['$stateProvider', '$urlRouterProvider',
                     'viewB': {
                         //template:''
                         templateUrl: 'system/views/news.html',
-                        controller: 'NewsController'
+                        controller: 'newsController'
                     }
                 }
             });
