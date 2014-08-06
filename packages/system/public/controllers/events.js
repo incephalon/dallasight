@@ -1,21 +1,17 @@
 'use strict';
 
-angular.module('mean.system').controller('EventsController', function($scope){
+angular.module('mean.system').controller('EventsController', function($scope, $timeout){
     //$('#leftWrapper').html('');
     //$('#leftWrapper').css('visibility', 'hidden');
     $('#leftWrapper').css('visibility', 'visible');
-    $scope.mapBehavior.showMapMask = true;
     $( "#thing" ).css( "height" , "100%");
 
-    if($scope.cloudLayer!=null)
-    {
-        $scope.weatherLayer.setMap(null);
-        $scope.cloudLayer.setMap(null);
-    }
-    if($scope.trafficLayer!=null)
-    {
-        $scope.trafficLayer.setMap(null);
-    }
+    $timeout(function() {
+        $scope.map.showMapMask = true;
+        $scope.map.zoom = 14;
+        $scope.map.showClouds = false;
+        $scope.map.showTraffic = false;
+    });
 
     $scope.events=[
         {name:"On the Run Tour (Beyonce & Jay-Z)",

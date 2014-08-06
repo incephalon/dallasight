@@ -1,21 +1,17 @@
 'use strict';
 
-angular.module('mean.system').controller('GuidesController', function($scope){
+angular.module('mean.system').controller('GuidesController', function($scope, $timeout){
 
     $('#leftWrapper').css('visibility', 'visible');
-    $scope.mapBehavior.showMapMask = true;
     $( "#thing" ).css( "height" , "100%");
     //$('#thing').css('background-color', 'transparent');
 
-    if($scope.cloudLayer!=null)
-    {
-        $scope.weatherLayer.setMap(null);
-        $scope.cloudLayer.setMap(null);
-    }
-    if($scope.trafficLayer!=null)
-    {
-        $scope.trafficLayer.setMap(null);
-    }
+    $timeout(function() {
+        $scope.map.showMapMask = true;
+        $scope.map.zoom = 14;
+        $scope.map.showClouds = false;
+        $scope.map.showTraffic = false;
+    });
 
     $scope.guides=[
         {name:'STAAR Testing'},

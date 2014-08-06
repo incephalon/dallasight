@@ -1,14 +1,12 @@
 'use strict';
 
-angular.module('mean.system').controller('newsController', ['$scope', '$sce', 'NewsItems',
-    function($scope, $sce, NewsItems) {
+angular.module('mean.system').controller('newsController', ['$scope', '$timeout', '$sce', 'NewsItems',
+    function($scope, $timeout, $sce, NewsItems) {
 
         NewsItems.query(function(newsItems) {
             $scope.newsItems = newsItems;
         });
         
-        $scope.mapBehavior.showMapMask = true;
-
         $scope.renderHtml = function(html_code)
         {
             return $sce.trustAsHtml(html_code);
@@ -18,15 +16,12 @@ angular.module('mean.system').controller('newsController', ['$scope', '$sce', 'N
         //$("#leftWrapper").css("visibility", "hidden");
         $("#leftWrapper").css("visibility", "visible");
 
-        if($scope.cloudLayer!=null)
-        {
-            $scope.weatherLayer.setMap(null);
-            $scope.cloudLayer.setMap(null);
-        }
-        if($scope.trafficLayer!=null)
-        {
-            $scope.trafficLayer.setMap(null);
-        }
+        $timeout(function() {
+            $scope.map.showMapMask = true;
+            $scope.map.zoom = 14;
+            $scope.map.showClouds = false;
+            $scope.map.showTraffic = false;
+        });
 
         $scope.panHere = function (lat, long) {
             //e.preventDefault();

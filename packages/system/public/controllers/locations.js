@@ -1,21 +1,16 @@
 'use strict';
 
-angular.module('mean.system').controller('LocationsController', function($scope){
-
-    if($scope.cloudLayer!=null)
-    {
-        $scope.weatherLayer.setMap(null);
-        $scope.cloudLayer.setMap(null);
-    }
-    if($scope.trafficLayer!=null)
-    {
-        $scope.trafficLayer.setMap(null);
-    }
+angular.module('mean.system').controller('LocationsController', function($scope, $timeout){
 
     $('#leftWrapper').css('visibility', 'hidden');
     $("#thing").css("height", "100%");
 
-    $scope.mapBehavior.showMapMask = true;
+    $timeout(function() {
+        $scope.map.showMapMask = true;
+        $scope.map.zoom = 14;
+        $scope.map.showClouds = false;
+        $scope.map.showTraffic = false;
+    });
 
     $scope.locations=[
         'Restaurants',

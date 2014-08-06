@@ -1,19 +1,15 @@
 'use strict';
 
-angular.module('mean.system').controller('ToursController', function($scope){
+angular.module('mean.system').controller('ToursController', function($scope, $timeout){
 
     $('#leftWrapper').css('visibility', 'visible');
-    $scope.mapBehavior.showMapMask = true;
 
-    if($scope.cloudLayer!=null)
-    {
-        $scope.weatherLayer.setMap(null);
-        $scope.cloudLayer.setMap(null);
-    }
-    if($scope.trafficLayer!=null)
-    {
-        $scope.trafficLayer.setMap(null);
-    }
+    $timeout(function() {
+        $scope.map.showMapMask = true;
+        $scope.map.zoom = 14;
+        $scope.map.showClouds = false;
+        $scope.map.showTraffic = false;
+    });
 
     $scope.tours=[
         {name:'DART Orange Line to DFW'},

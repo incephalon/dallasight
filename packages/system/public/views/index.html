@@ -1,6 +1,7 @@
 <section data-ng-controller="IndexController" class="container">
-  <google-map center="map.center" zoom="map.zoom" options="map.options" ng-class="{masked:mapBehavior.showMapMask}">
+  <google-map center="map.center" zoom="map.zoom" options="map.options" ng-class="{masked:map.showMapMask}">
     <layer type="TrafficLayer" show="map.showTraffic"></layer>
+    <layer namespace="weather" type="WeatherLayer" show="map.showClouds"></layer>
   </google-map>
 
   <div class="container">

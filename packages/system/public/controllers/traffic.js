@@ -1,19 +1,19 @@
 'use strict';
 
-angular.module('mean.system').controller('TrafficController', ['$scope', 'trafficData',
-    function($scope, trafficData) {
+angular.module('mean.system').controller('TrafficController', ['$scope', '$timeout', 'trafficData',
+    function($scope, $timeout, trafficData) {
 
         //$( '#leftWrapper' ).load( 'cards/one.html' );
 
         $('#leftWrapper').css('visibility', 'hidden');
         $("#thing").css("height", "auto");
-        $scope.mapBehavior.showMapMask = false;
-        $scope.map.zoom = 12;
-        $scope.map.showTraffic = true;
-//        $scope.map.showClouds = false;
-//        $scope.$on('$viewContentLoaded', function () {
-//            $scope.map.showTraffic = true;
-//        });
+
+        $timeout(function() {
+            $scope.map.showMapMask = false;
+            $scope.map.zoom = 12;
+            $scope.map.showClouds = false;
+            $scope.map.showTraffic = true;
+        });
 
         $scope.hello = 'from traffic controller';
 

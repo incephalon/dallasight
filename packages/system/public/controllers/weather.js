@@ -1,22 +1,19 @@
 'use strict';
 
-angular.module('mean.system').controller('WeatherController', ['$scope', 'weatherData',
-    function($scope, weatherData) {
+angular.module('mean.system').controller('WeatherController', ['$scope', '$timeout', 'weatherData',
+    function($scope, $timeout, weatherData) {
         $scope.hello = 'from weather controller';
 
         $('#leftWrapper').css('visibility', 'hidden');
 
-        $scope.map.zoom = 10;
-
-        if ($scope.trafficLayer != null) {
-            $scope.trafficLayer.setMap(null);
-        }
+        $timeout(function() {
+            $scope.map.showMapMask = false;
+            $scope.map.zoom = 10;
+            $scope.map.showClouds = true;
+            $scope.map.showTraffic = false;
+        });
 
         $scope.init = function () {
-            $('#map-canvas').fadeTo('slow', 1, function () {
-                // Animation complete.
-            });
-
             $('#left').fadeOut('slow', function () {
                 // Animation complete.
             });
@@ -33,7 +30,7 @@ angular.module('mean.system').controller('WeatherController', ['$scope', 'weathe
 
                 })
                 .error(function (error) {
-                    $scope.status = 'Unable to load customer data: ' + error.message;
+                    //$scope.status = 'Unable to load customer data: ' + error.message;
                 });
 
 
@@ -41,9 +38,6 @@ angular.module('mean.system').controller('WeatherController', ['$scope', 'weathe
 //            temperatureUnits: google.maps.weather.TemperatureUnit.FAHRENHEIT
 //        });
 //        $scope.weatherLayer.setMap($scope.map);
-//
-//        $scope.cloudLayer = new google.maps.weather.CloudLayer();
-//        $scope.cloudLayer.setMap($scope.map);
 
         };
 
