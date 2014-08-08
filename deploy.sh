@@ -105,24 +105,35 @@ installNodeAndNpm() {
 # Deployment
 # ----------
 
-echo Handling node.js deployment. 
+echo Handling node.js grunt deployment.
 
-# 1. KuduSync
-$KUDU_SYNC_CMD -v 50 -f "$DEPLOYMENT_SOURCE" -t "$DEPLOYMENT_TARGET" -n "$NEXT_MANIFEST_PATH" -p "$PREVIOUS_MANIFEST_PATH" -i ".git;.hg;.deployment;deploy.sh"
-exitWithMessageOnError "Kudu Sync failed"
+# 1. Select node version
+selectNodeVersion
 
-# 2. Install nodist
-installNodist
-
-# 3. Install Node and NPM
-installNodeAndNpm
+# 2. KuduSync to wwwroot
+"$KUDU_SYNC_CMD" -v 500 -f "$DEPLOYMENT_SOURCE" -t "$DEPLOYMENT_TARGET" -n "$NEXT_MANIFEST_PATH" -p "$PREVIOUS_MANIFEST_PATH" -i ".git;.deployment;deploy.sh;README.md;"
+exitWithMessageOnError "Kudu Sync to Target failed"
 
 # 3. Install npm packages
 if [ -e "$DEPLOYMENT_TARGET/package.json" ]; then
-  cd "$DEPLOYMENT_TARGET"
-  cmd.exe /c "\"$NPM_CMD\" install --production"
+  eval $NPM_CMD install
   exitWithMessageOnError "npm failed"
-  cd - > /dev/null 
+fi
+
+# 4. Install bower packages
+if [ -e "$DEPLOYMENT_TARGET/bower.json" ]; then
+  eval $NPM_CMD install bower
+  exitWithMessageOnError "installing bower failed"
+  ./node_modules/.bin/bower install
+  exitWithMessageOnError "bower failed"
+fi
+
+# 5. Run grunt
+if [ -e "$DEPLOYMENT_TARGET/Gruntfile.js" ]; then
+  eval $NPM_CMD install grunt-cli
+  exitWithMessageOnError "installing grunt failed"
+  ./node_modules/.bin/grunt --no-color build
+  exitWithMessageOnError "grunt failed"
 fi
 
 ##################################################################################################################################
