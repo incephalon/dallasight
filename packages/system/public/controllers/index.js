@@ -19,7 +19,10 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
             },
             showMapMask: false,
             showTraffic: false,
-            showClouds: false
+            showClouds: false,
+
         };
+
+        $scope.showLeft=true;
     }
 ]);
