@@ -3,7 +3,6 @@
 angular.module('mean.system').controller('newsController', ['$scope', '$timeout', '$sce', 'NewsItems',
     function($scope, $timeout, $sce, NewsItems) {
 
-        alert('we got azure deployment working again');
         NewsItems.query(function(newsItems) {
             $scope.newsItems = newsItems;
         });
