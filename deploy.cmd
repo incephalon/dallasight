@@ -105,28 +105,6 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   popd
 )
 
-:: 4. Install bower packages
-IF EXIST "%DEPLOYMENT_TARGET%\bower.json" (
-  pushd "%DEPLOYMENT_TARGET%"
-  call :ExecuteCmd !NPM_CMD! install bower
-  IF !ERRORLEVEL! NEQ 0 goto error
-  call :ExecuteCmd bower install
-  IF !ERRORLEVEL! NEQ 0 goto error
-  popd
-)
-
-:: 5. Run grunt
-IF EXIST "%DEPLOYMENT_TARGET%\bower.json" (
-  pushd "%DEPLOYMENT_TARGET%"
-  call :ExecuteCmd !NPM_CMD! install grunt-cli
-  IF !ERRORLEVEL! NEQ 0 goto error
-  call :ExecuteCmd grunt --no-color cssmin uglify
-  IF !ERRORLEVEL! NEQ 0 goto error
-  call :ExecuteCmd grunt --no-color --force
-  IF !ERRORLEVEL! NEQ 0 goto error
-  popd
-)
-
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :: Post deployment stub
