@@ -118,7 +118,7 @@ IF EXIST "%DEPLOYMENT_TARGET%\bower.json" (
 :: 5. Run grunt
 IF EXIST "%DEPLOYMENT_TARGET%\bower.json" (
   pushd "%DEPLOYMENT_TARGET%"
-  call :ExecuteCmd !NPM_CMD! install grunt-cli
+  call :ExecuteCmd !NPM_CMD! install -g grunt-cli
   IF !ERRORLEVEL! NEQ 0 goto error
   call :ExecuteCmd grunt --no-color cssmin uglify
   IF !ERRORLEVEL! NEQ 0 goto error
