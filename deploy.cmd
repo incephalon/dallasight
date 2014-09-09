@@ -125,7 +125,7 @@ IF EXIST "%DEPLOYMENT_TARGET%\Gruntfile.js" (
   echo Minimizing css and js.
   call :ExecuteCmd grunt --no-color cssmin uglify
   IF !ERRORLEVEL! NEQ 0 goto error
-  echo Installing npm packages.
+  echo Running grunt.
   call :ExecuteCmd grunt --no-color --force
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
