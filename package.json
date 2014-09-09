@@ -15,6 +15,7 @@
   },
   "scripts": {
     "start": "node node_modules/grunt-cli/bin/grunt",
+    "postinstall": "node node_modules/meanio/bin/mean-postinstall",
     "test": "node node_modules/grunt-cli/bin/grunt test"
   },
   "dependencies": {
