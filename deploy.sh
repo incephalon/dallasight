@@ -108,7 +108,7 @@ installNodeAndNpm() {
 echo Handling node.js grunt deployment.
 
 # 1. Select node version
-selectNodeVersion
+installNodeAndNpm
 
 # 2. Install npm packages
 if [ -e "$DEPLOYMENT_SOURCE/package.json" ]; then
