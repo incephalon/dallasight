@@ -2,7 +2,6 @@
 
 # ----------------------
 # KUDU Deployment Script
-# Version: 0.1.11
 # ----------------------
 
 # Helpers
@@ -10,7 +9,7 @@
 
 exitWithMessageOnError () {
   if [ ! $? -eq 0 ]; then
-    echo "An error has occurred during web site deployment."
+    echo "An error has occured during web site deployment."
     echo $1
     exit 1
   fi
@@ -26,10 +25,8 @@ exitWithMessageOnError "Missing node.js executable, please install node.js, if a
 # Setup
 # -----
 
-SCRIPT_DIR="${BASH_SOURCE[0]%\\*}"
-SCRIPT_DIR="${SCRIPT_DIR%/*}"
-ARTIFACTS=$SCRIPT_DIR/../artifacts
-KUDU_SYNC_CMD=${KUDU_SYNC_CMD//\"}
+SCRIPT_DIR="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+ARTIFACTS=$SCRIPT_DIR/artifacts
 
 if [[ ! -n "$DEPLOYMENT_SOURCE" ]]; then
   DEPLOYMENT_SOURCE=$SCRIPT_DIR
@@ -57,59 +54,80 @@ if [[ ! -n "$KUDU_SYNC_CMD" ]]; then
 
   if [[ ! -n "$KUDU_SERVICE" ]]; then
     # In case we are running locally this is the correct location of kuduSync
-    KUDU_SYNC_CMD=kuduSync
+    KUDU_SYNC_CMD="kuduSync"
   else
     # In case we are running on kudu service this is the correct location of kuduSync
-    KUDU_SYNC_CMD=$APPDATA/npm/node_modules/kuduSync/bin/kuduSync
+    KUDU_SYNC_CMD="$APPDATA/npm/node_modules/kuduSync/bin/kuduSync"
   fi
 fi
 
 # Node Helpers
 # ------------
 
-selectNodeVersion () {
-  if [[ -n "$KUDU_SELECT_NODE_VERSION_CMD" ]]; then
-    SELECT_NODE_VERSION="$KUDU_SELECT_NODE_VERSION_CMD \"$DEPLOYMENT_SOURCE\" \"$DEPLOYMENT_TARGET\" \"$DEPLOYMENT_TEMP\""
-    eval $SELECT_NODE_VERSION
-    exitWithMessageOnError "select node version failed"
+installNodist () {
+  NODE_EXE="$PROGRAMFILES/nodejs/node.exe"
+  NODE_RUNTIME_ROOT="$DEPLOYMENT_TARGET/../.."
+  NODIST_NODE_EXE="$NODE_RUNTIME_ROOT/node/nodist/bin/node.exe"
+  NPM_CMD="$NODE_RUNTIME_ROOT/node/nodist/bin/npm"
 
-    if [[ -e "$DEPLOYMENT_TEMP/__nodeVersion.tmp" ]]; then
-      NODE_EXE=`cat "$DEPLOYMENT_TEMP/__nodeVersion.tmp"`
-      exitWithMessageOnError "getting node version failed"
-    fi
-
-    if [[ -e "$DEPLOYMENT_TEMP/.tmp" ]]; then
-      NPM_JS_PATH=`cat "$DEPLOYMENT_TEMP/__npmVersion.tmp"`
-      exitWithMessageOnError "getting npm version failed"
-    fi
-
-    if [[ ! -n "$NODE_EXE" ]]; then
-      NODE_EXE=node
-    fi
-
-    NPM_CMD="\"$NODE_EXE\" \"$NPM_JS_PATH\""
-  else
-    NPM_CMD=npm
-    NODE_EXE=node
+  if [[ ! -e "$NODE_RUNTIME_ROOT/node/nodist/bin/node.exe" ]]; then
+    echo Installing nodist
+    cd $NODE_RUNTIME_ROOT
+    mkdir node
+    cd node
+    git clone git://github.com/marcelklehr/nodist.git 2>/dev/null
+    cd nodist
+    npm install --production
+    cd bin
+    nodist update
   fi
+}
+
+installNodeAndNpm() {
+  cd $NODE_RUNTIME_ROOT/node/nodist/bin
+  SELECT_NODE_VERSION="\"$NODE_EXE\" \"$DEPLOYMENT_TARGET/conf.js\""
+  eval "$SELECT_NODE_VERSION"
+  NODE_VERSION=`cat nodeVersion.tmp`
+  NPM_VERSION=`cat npmVersion.tmp`
+  echo "node version: `nodist $NODE_VERSION`"
+# Check the locally installed npm to see if it matches the required version.
+# If a range is specified, it will not match up and so npm will still be invoked.
+# For best performance specify a specific version rather than a semver expression
+  MATCH=`npm ls npm@$NPM_VERSION | grep -c $NPM_VERSION`
+  if [[ "$MATCH" == "0" ]]; then
+    cmd.exe /c "\"$NPM_CMD\" install npm@$NPM_VERSION"
+    exitWithMessageOnError "npm failed"
+  fi
+  echo "npm version: `cmd.exe /c \"\"$NPM_CMD\" -v\"`"
 }
 
 ##################################################################################################################################
 # Deployment
 # ----------
 
-echo Handling node.js grunt deployment.
+echo Handling node.js deployment.
 
-# 1. Select node version
-selectNodeVersion
+# 1. KuduSync
+$KUDU_SYNC_CMD -v 50 -f "$DEPLOYMENT_SOURCE" -t "$DEPLOYMENT_TARGET" -n "$NEXT_MANIFEST_PATH" -p "$PREVIOUS_MANIFEST_PATH" -i ".git;.hg;.deployment;deploy.sh"
+exitWithMessageOnError "Kudu Sync failed"
 
-# 2. Install npm packages
-if [ -e "$DEPLOYMENT_SOURCE/package.json" ]; then
-  eval $NPM_CMD install
+# 2. Install nodist
+installNodist
+
+# 3. Install Node and NPM
+installNodeAndNpm
+
+# 3. Install npm packages
+if [ -e "$DEPLOYMENT_TARGET/package.json" ]; then
+  cd "$DEPLOYMENT_TARGET"
+  cmd.exe /c "\"$NPM_CMD\" install --production"
   exitWithMessageOnError "npm failed"
+  cd - > /dev/null
 fi
 
-# 3. Install bower packages
+echo Handling node.js grunt deployment.
+
+# 4. Install bower packages
 if [ -e "$DEPLOYMENT_SOURCE/bower.json" ]; then
   eval $NPM_CMD install bower
   exitWithMessageOnError "installing bower failed"
@@ -117,26 +135,16 @@ if [ -e "$DEPLOYMENT_SOURCE/bower.json" ]; then
   exitWithMessageOnError "bower failed"
 fi
 
-# 4. Run grunt
+# 5. Run grunt
 if [ -e "$DEPLOYMENT_SOURCE/Gruntfile.js" ]; then
   eval $NPM_CMD install grunt-cli
   exitWithMessageOnError "installing grunt failed"
-  ./node_modules/.bin/grunt --no-color clean common dist
+  ./node_modules/.bin/grunt --no-color grunt cssmin uglify
+  exitWithMessageOnError "grunt dist failed"
+  ./node_modules/.bin/grunt --no-color grunt --force
   exitWithMessageOnError "grunt failed"
 fi
 
-# 5. KuduSync to Target
-"$KUDU_SYNC_CMD" -v 500 -f "$DEPLOYMENT_SOURCE/dist" -t "$DEPLOYMENT_TARGET" -n "$NEXT_MANIFEST_PATH" -p "$PREVIOUS_MANIFEST_PATH" -i ".git;.hg;.deployment;deploy.sh"
-exitWithMessageOnError "Kudu Sync to Target failed"
-
 ##################################################################################################################################
-
-# Post deployment stub
-if [[ -n "$POST_DEPLOYMENT_ACTION" ]]; then
-  POST_DEPLOYMENT_ACTION=${POST_DEPLOYMENT_ACTION//\"}
-  cd "${POST_DEPLOYMENT_ACTION_DIR%\\*}"
-  "$POST_DEPLOYMENT_ACTION"
-  exitWithMessageOnError "post deployment action failed"
-fi
 
 echo "Finished successfully."
