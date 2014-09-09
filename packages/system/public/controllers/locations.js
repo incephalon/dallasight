@@ -8,8 +8,8 @@ angular.module('mean.system').controller('LocationsController', function($scope,
     $timeout(function() {
         $scope.map.showMapMask = true;
         $scope.map.zoom = 14;
-        $scope.map.showClouds = false;
-        $scope.map.showTraffic = false;
+        $scope.map.clouds.show = false;
+        $scope.map.traffic.show = false;
     });
 
     $scope.locations=[

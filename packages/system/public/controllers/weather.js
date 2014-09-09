@@ -9,8 +9,8 @@ angular.module('mean.system').controller('WeatherController', ['$scope', '$timeo
         $timeout(function() {
             $scope.map.showMapMask = false;
             $scope.map.zoom = 10;
-            $scope.map.showClouds = true;
-            $scope.map.showTraffic = false;
+            $scope.map.clouds.show = true;
+            $scope.map.traffic.show = false;
         });
 
         $scope.init = function () {

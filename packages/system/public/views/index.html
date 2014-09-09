@@ -1,7 +1,8 @@
 <section data-ng-controller="IndexController" class="container">
   <google-map center="map.center"  draggable="true" zoom="map.zoom" options="map.options" ng-class="{masked:map.showMapMask}">
-    <layer type="TrafficLayer" show="map.showTraffic"></layer>
-    <layer namespace="weather" type="WeatherLayer" show="map.showClouds"></layer>
+    <layer type="TrafficLayer" show="map.traffic.show"></layer>
+    <layer namespace="weather" type="WeatherLayer" show="map.clouds.show"></layer>
+    <layer type="KmlLayer" options="map.cta.options" show="map.cta.show"></layer>
   </google-map>
 
   <div class="container">

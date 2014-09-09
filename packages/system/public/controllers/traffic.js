@@ -11,10 +11,25 @@ angular.module('mean.system').controller('TrafficController', ['$scope', '$timeo
         $timeout(function() {
             $scope.map.showMapMask = false;
             $scope.map.zoom = 12;
-            $scope.map.showClouds = false;
-            $scope.map.showTraffic = true;
-            $scope.showLeft=false;
+            $scope.map.clouds.show = false;
+            $scope.map.traffic.show = true;
+            $scope.map.cta.options = {
+                url: 'http://commitcharts.azurewebsites.net/kmls/DallasCounty_2011CommissionerPrecincts.kml',
+                preserveViewport: true
+            };
+            $scope.showLeft = false;
         });
+
+        $scope.toggleKml = function() {
+            if($scope.map.traffic.show) {
+                $scope.map.traffic.show = false;
+                $scope.map.cta.show = true;
+            }
+            else {
+                $scope.map.traffic.show = true;
+                $scope.map.cta.show = false;
+            }
+        };
 
         $scope.hello = 'from traffic controller';
 

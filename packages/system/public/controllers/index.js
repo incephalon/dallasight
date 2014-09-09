@@ -18,9 +18,17 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
                 //tilt: 45
             },
             showMapMask: false,
-            showTraffic: false,
-            showClouds: false,
-
+            traffic: {
+                show: false
+            },
+            clouds: {
+                show: false
+            },
+            cta: {
+                show: false,
+                options: {}
+            },
+            layerType: 'TrafficLayer'
         };
 
         $scope.showLeft=true;
