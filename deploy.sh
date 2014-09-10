@@ -107,13 +107,15 @@ selectNodeVersion
 if [ -e "$DEPLOYMENT_SOURCE/Gruntfile.js" ]; then
   eval $NPM_CMD install grunt-cli
   exitWithMessageOnError "installing grunt failed"
-  ./node_modules/.bin/grunt --no-color --force csslint uglify
+  ./node_modules/.bin/grunt --no-color --force heroku:production
   exitWithMessageOnError "grunt failed"
 fi
 
-# 3. KuduSync to Target
-"$KUDU_SYNC_CMD" -v 500 -f "$DEPLOYMENT_SOURCE/dist" -t "$DEPLOYMENT_TARGET" -n "$NEXT_MANIFEST_PATH" -p "$PREVIOUS_MANIFEST_PATH" -i ".git;.hg;.deployment;deploy.sh"
-exitWithMessageOnError "Kudu Sync to Target failed"
+# 1. KuduSync
+if [[ "$IN_PLACE_DEPLOYMENT" -ne "1" ]]; then
+  "$KUDU_SYNC_CMD" -v 50 -f "$DEPLOYMENT_SOURCE" -t "$DEPLOYMENT_TARGET" -n "$NEXT_MANIFEST_PATH" -p "$PREVIOUS_MANIFEST_PATH" -i ".git;.hg;.deployment;deploy.sh"
+  exitWithMessageOnError "Kudu Sync failed"
+fi
 
 ##################################################################################################################################
 
