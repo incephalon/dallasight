@@ -14,8 +14,8 @@
     "npm": "1.3.x"
   },
   "scripts": {
-    "start": "node ./node_modules/.bin/grunt",
-    "postinstall": "npm install -g grunt-cli && npm install -g bower && ./node_modules/.bin/grunt --no-color --force heroku:production && node ./node_modules/meanio/bin/mean-postinstall",
+    "start": "grunt",
+    "postinstall": "npm install -g grunt-cli && npm install -g bower && grunt --no-color --force heroku:production && node node_modules/meanio/bin/mean-postinstall",
     "test": "node node_modules/grunt-cli/bin/grunt test"
   },
   "dependencies": {
