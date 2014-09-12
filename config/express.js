@@ -100,4 +100,18 @@ module.exports = function(app, passport, db) {
 
   // Connect flash for flash messages
   app.use(flash());
+
+  // error handling
+  app.use(function (err, req, res, next) {
+    // If the error object doesn't exists
+    if (!err) return next();
+
+    // Log it
+    console.error(err.stack);
+
+    // Error page
+    res.status(500).render('500', {
+        error: err.stack
+    });
+  });
 };
