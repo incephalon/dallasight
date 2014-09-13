@@ -11,6 +11,7 @@ angular.module('mean.system').controller('GuidesController', function($scope, $t
         $scope.map.zoom = 14;
         $scope.map.clouds.show = false;
         $scope.map.traffic.show = false;
+        $scope.map.cta.show = false;
     });
 
     $scope.guides=[

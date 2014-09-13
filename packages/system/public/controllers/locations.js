@@ -10,6 +10,7 @@ angular.module('mean.system').controller('LocationsController', function($scope,
         $scope.map.zoom = 14;
         $scope.map.clouds.show = false;
         $scope.map.traffic.show = false;
+        $scope.map.cta.show = false;
     });
 
     $scope.locations=[

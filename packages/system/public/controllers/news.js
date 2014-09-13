@@ -16,13 +16,6 @@ angular.module('mean.system').controller('newsController', ['$scope', '$timeout'
         //$("#leftWrapper").css("visibility", "hidden");
         $("#leftWrapper").css("visibility", "visible");
 
-        $timeout(function() {
-            $scope.map.showMapMask = true;
-            $scope.map.zoom = 14;
-            $scope.map.clouds.show = false;
-            $scope.map.traffic.show = false;
-        });
-
         $scope.panHere = function (lat, long) {
             //e.preventDefault();
             var n = new google.maps.LatLng(lat, long);

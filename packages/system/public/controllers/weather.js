@@ -11,6 +11,7 @@ angular.module('mean.system').controller('WeatherController', ['$scope', '$timeo
             $scope.map.zoom = 10;
             $scope.map.clouds.show = true;
             $scope.map.traffic.show = false;
+            $scope.map.cta.show = false;
         });
 
         $scope.init = function () {
