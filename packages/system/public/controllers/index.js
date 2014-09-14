@@ -26,7 +26,10 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
             },
             cta: {
                 show: false,
-                options: {}
+                options: {
+                    url: 'http://commitcharts.azurewebsites.net/kmls/DallasCounty_2011CommissionerPrecincts.kml',
+                    preserveViewport: true
+                }
             },
             layerType: 'TrafficLayer'
         };
